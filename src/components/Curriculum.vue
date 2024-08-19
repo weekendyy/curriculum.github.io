@@ -1,7 +1,6 @@
 <template>
   <div class="SchoolTable">
     <div class="week-select">
-      <div class="title-top">2024-2025学年  秋季学期</div>
       <van-dropdown-menu active-color="#e69a04">
         <van-dropdown-item :title="title" ref="weekRef">
           <van-cell v-for="(item, index) in weekOption" :class="index === weekIndex ? 'active-color': ''" :key="index" @click="()=>handleDropdownItem(item,index)" :title="item.title" :value="item.date" />
@@ -395,7 +394,6 @@ export default {
     }
     .van-dropdown-menu {
       width: 100%;
-      border-top: 1px solid #fac863;
       .dropdown-item {
         line-height: 1.5;
       }
