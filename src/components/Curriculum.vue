@@ -445,7 +445,7 @@ export default {
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
     }
-    .next,.prev{
+    .next{
       line-height: 2;
       font-size: 14px;
       padding: 0 15px;
@@ -453,12 +453,22 @@ export default {
       background-color: #fac863;
       color: #fff;
       position: absolute;
-      right: 240px;
+      left: 100px;
       top: 9px;
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
     }
     .prev {
+      line-height: 2;
+      font-size: 14px;
+      padding: 0 15px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      position: absolute;
+      top: 9px;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
       right: 100px;
     }
     .disabled {
