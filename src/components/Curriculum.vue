@@ -3,13 +3,20 @@
     <div class="week-select">
       <van-dropdown-menu active-color="#e69a04">
         <van-dropdown-item :title="title" ref="weekRef">
-          <van-cell v-for="(item, index) in weekOption" :class="index === weekIndex ? 'active-color': ''" :key="index" @click="()=>handleDropdownItem(item,index)" :title="item.title" :value="item.date" />
+          <van-cell v-for="(item, index) in weekOption" :class="index === weekIndex ? 'active-color': ''" :key="index" @click="()=>handleDropdownItem(index,true)" :title="item.title" :value="item.date" />
         </van-dropdown-item>
       </van-dropdown-menu>
+      <!-- 今天 -->
+      <div class="today" v-if="showToday" @click="handleToday">今天</div>
+      <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
+      <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
       <!-- 课程日历 -->
       <div class="table-box">
-        <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'height': currentWeekIndex.includes(index) ? '120px': '60px'}">
-          <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}">{{ week }}</div>
+        <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'height': currentWeekIndex.includes(index) ? '120px': '60px','background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
+          <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}">
+            <span class="week-text">{{ week }}</span>
+            <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
+          </div>
           <template v-if="currentWeekInfo.course">
             <template v-for="(item,idx) in currentWeekInfo.course">
               <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
@@ -45,6 +52,7 @@
 </template>
 
 <script>
+import moment from "moment"
 
 export default {
   name: 'SchoolTable',
@@ -52,13 +60,16 @@ export default {
   },
   data(){
     return {
-      weekIndex: 1,
+      showToday: false,
+      weekIndex: 0,
+      weekDayIndex: null,
       title: "第1周",
       weekOption: [
-        { title: '第1周', date: "9月01日 至 9月07日" },
+        { title: '第1周', date: "9月01日 至 9月07日",startDate: "09-01", },
         { 
           title: '第2周',
           date: "9月08日 至 9月14日",
+          startDate: "09-08",
           course: [
             {
               dayIndex: 0,
@@ -72,6 +83,7 @@ export default {
         { 
           title: '第3周',
           date: "9月15日 至 9月21日",
+          startDate: "09-15",
           course: [
             {
               dayIndex: 0,
@@ -92,6 +104,7 @@ export default {
         { 
           title: '第4周',
           date: "9月22日 至 9月28日",
+          startDate: "09-22",
           course: [
             {
               dayIndex: 0,
@@ -112,6 +125,7 @@ export default {
         { 
           title: '第5周',
           date: "9月29日 至 10月05日",
+          startDate: "09-29",
           course: [
             {
               dayIndex: 6,
@@ -122,10 +136,11 @@ export default {
             }
           ]
         },
-        { title: '第6周', date: "10月06日 至 10月12日" },
+        { title: '第6周', date: "10月06日 至 10月12日",startDate: "10-06", },
         { 
           title: '第7周',
           date: "10月13日 至 10月19日",
+          startDate: "10-13",
           course: [
             {
               dayIndex: 0,
@@ -146,6 +161,7 @@ export default {
         { 
           title: '第8周',
           date: "10月20日 至 10月26日",
+          startDate: "10-20",
           course: [
             {
               dayIndex: 0,
@@ -166,6 +182,7 @@ export default {
         { 
           title: '第9周',
           date: "10月27日 至 11月02日",
+          startDate: "10-27",
           course: [
             {
               dayIndex: 0,
@@ -186,6 +203,7 @@ export default {
         {
           title: '第10周',
           date: "11月03日 至 11月09日",
+          startDate: "11-03",
           course: [
             {
               dayIndex: 0,
@@ -206,6 +224,7 @@ export default {
         { 
           title: '第11周',
           date: "11月10日 至 11月16日",
+          startDate: "11-10",
           course: [
             {
               dayIndex: 0,
@@ -226,6 +245,7 @@ export default {
         {
           title: '第12周',
           date: "11月17日 至 11月23日",
+          startDate: "11-17",
           course: [
             {
               dayIndex: 0,
@@ -246,6 +266,7 @@ export default {
         {
           title: '第13周',
           date: "11月24日 至 11月30日",
+          startDate: "11-24",
           course: [
             {
               dayIndex: 0,
@@ -259,6 +280,7 @@ export default {
         {
           title: '第14周',
           date: "12月01日 至 12月07日",
+          startDate: "12-01",
           course: [
             {
               dayIndex: 0,
@@ -269,10 +291,11 @@ export default {
             }
           ]
         },
-        { title: '第15周', date: "12月08日 至 12月14日" },
+        { title: '第15周', date: "12月08日 至 12月14日",startDate: "12-08", },
         {
           title: '第16周',
           date: "12月15日 至 12月21日",
+          startDate: "12-15",
           course: [
             {
               dayIndex: 0,
@@ -293,6 +316,7 @@ export default {
         {
           title: '第17周',
           date: "12月22日 至 12月28日",
+          startDate: "12-22",
           course: [
             {
               dayIndex: 0,
@@ -313,6 +337,7 @@ export default {
       ],
       tableConfig: {
         weekDay: ["周天","周一","周二","周三","周四","周五","周六"],
+        weekDate: ["09-01","09-02","09-03","09-04","09-05","09-06","09-07"],
         dayTime: [
           {
             name: "第一节",
@@ -363,10 +388,34 @@ export default {
     }
   },
   methods: {
-    handleDropdownItem(item,index){
+    initWeekDate(){
+      this.tableConfig.weekDate = []
+      const startDate = this.currentWeekInfo.startDate
+      for(let i = 0; i < 7; i++){
+        this.tableConfig.weekDate.push(moment("2024-"+startDate).add(i, 'days').format("MM-DD"))
+      }
+    },
+    handleDropdownItem(index, toggle){
+      const item = this.weekOption[index]
       this.title = item.title
       this.weekIndex = index
-      this.$refs.weekRef.toggle();
+      toggle && this.$refs.weekRef.toggle();
+      this.weekDayIndex = null
+      this.initWeekDate()
+    },
+    handleToday(){
+      const weekIndex = moment().week() - 36
+      this.weekIndex = weekIndex
+      const item = this.weekOption[weekIndex]
+      this.title = item.title
+      this.weekDayIndex = moment().weekday()
+      this.initWeekDate()
+    }
+  },
+  created(){
+    this.showToday = (moment().week() - 35) > 0
+    if(this.showToday){
+      this.handleToday()
     }
   }
 }
@@ -383,6 +432,38 @@ export default {
     justify-content: center;
     width: 100%;
     position: relative;
+    .today {
+      line-height: 2;
+      font-size: 14px;
+      padding: 0 15px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      position: absolute;
+      right: 20px;
+      top: 9px;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
+    }
+    .next,.prev{
+      line-height: 2;
+      font-size: 14px;
+      padding: 0 15px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      position: absolute;
+      right: 240px;
+      top: 9px;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
+    }
+    .prev {
+      right: 100px;
+    }
+    .disabled {
+      filter: grayscale(100%);
+    }
     /deep/.van-dropdown-item  {
       .van-popup {
         .active-color {
@@ -438,6 +519,17 @@ export default {
           background: #fff;
           line-height: 120px;
           box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .week-text {
+            line-height: 1;
+          }
+          .date {
+            font-size: 11px;
+            margin-top: 5px;
+          }
         }
         .weekday-row {
           display: flex;
