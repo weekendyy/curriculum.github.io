@@ -8,6 +8,7 @@
       </van-dropdown-menu>
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
+      <img src="./xiada.png" class="logo" />
       <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
       <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
       <!-- 课程日历 -->
@@ -445,31 +446,38 @@ export default {
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
     }
+    .logo {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      width: 90px;
+      z-index: 100;
+    }
     .next{
       line-height: 2;
-      font-size: 14px;
+      font-size: 20px;
       padding: 0 15px;
       border-radius: 5px;
       background-color: #fac863;
       color: #fff;
-      position: absolute;
-      left: 100px;
-      top: 9px;
+      position: fixed;
+      left: 20px;
+      bottom: 30px;
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
     }
     .prev {
       line-height: 2;
-      font-size: 14px;
+      font-size: 20px;
       padding: 0 15px;
       border-radius: 5px;
       background-color: #fac863;
       color: #fff;
-      position: absolute;
-      top: 9px;
+      position: fixed;
+      bottom: 30px;
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
-      right: 100px;
+      right: 20px;
     }
     .disabled {
       filter: grayscale(100%);
@@ -535,10 +543,12 @@ export default {
           justify-content: center;
           .week-text {
             line-height: 1;
+            font-weight: 600;
           }
           .date {
             font-size: 11px;
             margin-top: 5px;
+            color: #f8a603;
           }
         }
         .weekday-row {
