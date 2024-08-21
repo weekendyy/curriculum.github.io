@@ -8,7 +8,7 @@
       </van-dropdown-menu>
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
-      <img src="/curriculum.github.io/xiada.png" class="logo" />
+      <img src="/xiada.png" class="logo" />
       <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
       <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
       <!-- 课程日历 -->
