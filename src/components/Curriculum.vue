@@ -13,39 +13,50 @@
       <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
       <!-- 课程日历 -->
       <div class="table-box">
-        <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'height': currentWeekIndex.includes(index) ? '120px': '60px','background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
+        <div class="depart-line"></div>
+        <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
           <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}">
             <span class="week-text">{{ week }}</span>
             <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
           </div>
-          <template v-if="currentWeekInfo.course">
-            <template v-for="(item,idx) in currentWeekInfo.course">
-              <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
-                <div v-if="item.dayIndex === index" class="class-card">
-                  <div class="info-item">
-                    <van-icon name="notes" />
-                    <p>课程：{{ item.courseName }}</p>
-                  </div>
-                  <div class="info-item">
-                    <van-icon name="location" />
-                    <p>地点：{{ item.address }}</p>
-                  </div>
-                  <div class="info-item">
-                    <van-icon name="manager" />
-                    <p>老师：{{ item.teacher }}</p>
-                  </div>
-                  <div class="info-item" style="align-items: flex-start;">
-                    <van-icon name="clock" style="margin-top: 3px;" />
-                    <div class="clock-item"><p>时间：</p>
-                      <div >
-                        <p style="text-align: left;" v-for="time in item.time" :key="time">{{time}}</p>
+          <div class="row-line-two">
+            <template v-if="currentWeekInfo.course">
+              <template v-for="(item,idx) in currentWeekInfo.course">
+                <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
+                  <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`">
+                    <div class="info-item" v-if="item.courseName">
+                      <van-icon name="notes" />
+                      <p>课程：{{ item.courseName }}</p>
+                    </div>
+                    <div class="info-item" v-if="item.address">
+                      <van-icon name="location" />
+                      <p>地点：{{ item.address }}</p>
+                    </div>
+                    <div class="info-item" v-if="item.teacher">
+                      <van-icon name="manager" />
+                      <p>老师：{{ item.teacher }}</p>
+                    </div>
+                    <div class="info-item" style="align-items: flex-start;" v-if="item.time">
+                      <van-icon name="clock" style="margin-top: 3px;" />
+                      <div class="clock-item"><p>时间：</p>
+                        <div >
+                          <p style="text-align: left;" v-for="time in item.time" :key="time">{{time}}</p>
+                        </div>
                       </div>
+                    </div>
+                    <div class="info-item" v-if="item.remark">
+                      <van-icon name="manager" />
+                      <p>备注：{{ item.remark }}</p>
+                    </div>
+                    <div class="info-item" v-if="item.other">
+                      <van-icon :name="item.icon || 'good-job'" />
+                      <p>{{ item.other }}</p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </template>
             </template>
-          </template>
+          </div>
         </div>
       </div>
     </div>
@@ -99,6 +110,15 @@ export default {
               courseName: "工程信息管理",
               teacher: "彭丽芳",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 6,
+              other: "喜乐会"
+            },
+            {
+              dayIndex: 2,
+              other: "中秋节",
+              icon: ""
             }
           ]
         },
@@ -134,10 +154,48 @@ export default {
               courseName: "工程数学",
               teacher: "缪朝炜",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 5,
+              other: "国庆放假【法定】"
+            },
+            {
+              dayIndex: 4,
+              other: "国庆放假【法定】"
+            },
+            {
+              dayIndex: 3,
+              other: "国庆放假【法定】"
+            },
+            {
+              dayIndex: 2,
+              other: "国庆放假【法定】"
             }
           ]
         },
-        { title: '第6周', date: "10月06日 至 10月12日",startDate: "10-06", },
+        { 
+          title: '第6周',
+          date: "10月06日 至 10月12日",
+          startDate: "10-06",
+          course: [
+            {
+              dayIndex: 0,
+              other: "国庆放假【法定】"
+            },
+            {
+              dayIndex: 1,
+              other: "国庆放假【法定】"
+            },
+            {
+              dayIndex: 6,
+              other: "补班"
+            },
+            {
+              dayIndex: 5,
+              other: "重阳节"
+            }
+          ]
+        },
         { 
           title: '第7周',
           date: "10月13日 至 10月19日",
@@ -198,6 +256,10 @@ export default {
               courseName: "研究生英语(管科系)",
               teacher: "林丽芳",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 5,
+              other: "万圣节"
             }
           ]
         },
@@ -275,6 +337,10 @@ export default {
               courseName: "工程经济学",
               teacher: "杨光勇",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 4,
+              other: "感恩节"
             }
           ]
         },
@@ -302,14 +368,16 @@ export default {
               dayIndex: 0,
               address: "庄汉水楼（南强二）302",
               courseName: "项目管理概论(ME)(01)",
-              teacher: "许征学(因考试周原因，还有一天课程未上系统，后续通知)",
+              teacher: "许征学",
+              remark: "因考试周原因，还有一天课程未上系统，后续通知",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
             },
             {
               dayIndex: 6,
               address: "庄汉水楼（南强二）302",
               courseName: "项目管理概论(ME)(01)",
-              teacher: "许征学(因考试周原因，还有一天课程未上系统，后续通知)",
+              teacher: "许征学",
+              remark: "因考试周原因，还有一天课程未上系统，后续通知",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
             }
           ]
@@ -323,15 +391,25 @@ export default {
               dayIndex: 0,
               address: "庄汉水楼（南强二）302",
               courseName: "项目管理概论(ME)(01)",
-              teacher: "许征学(因考试周原因，还有一天课程未上系统，后续通知)",
+              teacher: "许征学",
+              remark: "因考试周原因，还有一天课程未上系统，后续通知",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
             },
             {
               dayIndex: 6,
               address: "庄汉水楼（南强二）302",
               courseName: "项目管理概论(ME)(01)",
-              teacher: "许征学(因考试周原因，还有一天课程未上系统，后续通知)",
+              teacher: "许征学",
+              remark: "因考试周原因，还有一天课程未上系统，后续通知",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 2,
+              other: "平安夜"
+            },
+            {
+              dayIndex: 3,
+              other: "圣诞节"
             }
           ]
         },
@@ -425,7 +503,11 @@ export default {
 <style scoped lang="less">
 
 .SchoolTable {
-
+  /deep/.van-dropdown-menu__title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #f8a603;
+  }
   .week-select {
     display: flex;
     flex-direction: column;
@@ -455,7 +537,7 @@ export default {
     }
     .next{
       line-height: 2;
-      font-size: 20px;
+      font-size: 25px;
       padding: 0 15px;
       border-radius: 5px;
       background-color: #fac863;
@@ -468,7 +550,7 @@ export default {
     }
     .prev {
       line-height: 2;
-      font-size: 20px;
+      font-size: 25px;
       padding: 0 15px;
       border-radius: 5px;
       background-color: #fac863;
@@ -516,15 +598,20 @@ export default {
       border-bottom: 1px solid #f5f3f3;
       box-sizing: border-box;
       border-top: 1px solid #fac863;
+      .depart-line{
+        width: 1px;
+        height: 100%;
+        background: #000;
+      }
       .week-day {
-        height: 120px;
         width: 100%;
         font-size: 14px;
         display: flex;
-        overflow-x: scroll;
+        align-items: center;
         position: relative;
         box-sizing: content-box;
         border-bottom: 1px solid #ddd;
+        min-height: 50px;
         .row-line-one {
           position: sticky;
           left: 0;
@@ -532,7 +619,6 @@ export default {
           height: 100%;
           flex: 0 0 50px;
           font-size: 14px;
-          border-right: 1px solid #ddd;
           z-index: 1;
           background: #fff;
           line-height: 120px;
@@ -551,18 +637,28 @@ export default {
             color: #f8a603;
           }
         }
+        .row-line-two {
+          flex: 1;
+          border-left: 1px solid #ddd;
+          min-height: 50px;
+        }
         .weekday-row {
           display: flex;
           align-items: center;
           box-sizing: border-box;
-          padding: 0 10px;
+          padding: 10px;
           flex-shrink: 0;
+          overflow-x: scroll;
           .class-card {
             background: linear-gradient(to left top, #fac863,#f3d28f);
             padding: 7px;
             border-radius: 8px;
-            box-shadow: 0 0 30px #d6d3cd;
+            box-shadow: 0 0 5px #d6d3cd;
             margin-right: 20px;
+            flex-shrink: 0;
+            &:last-child{
+              margin-right: 0;
+            }
             .info-item {
               display: flex;
               align-items: center;
@@ -574,13 +670,16 @@ export default {
               }
               p{
                 margin: 0;
-                font-size: 13px;
+                font-size: 12px;
                 line-height: 18px;
               }
               .clock-item {
                 display: flex;
               }
             }
+          }
+          .other-bg {
+            background: linear-gradient(to left top, #63a8fa, #cff38f);
           }
         }
       }
