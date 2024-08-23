@@ -672,6 +672,7 @@ export default {
                 margin: 0;
                 font-size: 12px;
                 line-height: 18px;
+                color: #705928;
               }
               .clock-item {
                 display: flex;
