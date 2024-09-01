@@ -15,7 +15,7 @@
       <div class="table-box">
         <div class="depart-line"></div>
         <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
-          <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}">
+          <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
             <span class="week-text">{{ week }}</span>
             <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
           </div>
@@ -24,6 +24,11 @@
               <template v-for="(item,idx) in currentWeekInfo.course">
                 <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
                   <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`">
+                    <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
+                    <div class="info-item" v-if="item.other">
+                      <van-icon :name="item.icon || 'good-job'" />
+                      <p>{{ item.other }}</p>
+                    </div>
                     <div class="info-item" v-if="item.courseName">
                       <van-icon name="notes" />
                       <p>课程：{{ item.courseName }}</p>
@@ -48,10 +53,7 @@
                       <van-icon name="manager" />
                       <p>备注：{{ item.remark }}</p>
                     </div>
-                    <div class="info-item" v-if="item.other">
-                      <van-icon :name="item.icon || 'good-job'" />
-                      <p>{{ item.other }}</p>
-                    </div>
+                    
                   </div>
                 </div>
               </template>
@@ -60,6 +62,42 @@
         </div>
       </div>
     </div>
+    <!-- 添加日历 -->
+    <van-dialog v-model="showAddDialog" title="添加日历" show-cancel-button @closed="closeAddDialog" @confirm="addConfirm" :beforeClose="beforeClose">
+      <van-form @submit="onSubmit" class="addform">
+        <van-field
+          v-model="addParams.other"
+          name="主题"
+          label="主题"
+          placeholder="主题"
+          :rules="[{ required: true, message: '请填写主题' }]"
+        />
+        <van-field
+          v-model="addParams.courseName"
+          name="课程"
+          label="课程"
+          placeholder="课程(非必填)"
+        />
+        <van-field
+          v-model="addParams.address"
+          name="地点"
+          label="地点"
+          placeholder="地点(非必填)"
+        />
+        <van-field
+          v-model="addParams.teacher"
+          name="老师"
+          label="老师"
+          placeholder="老师(非必填)"
+        />
+        <van-field
+          v-model="addParams.time"
+          name="时间"
+          label="时间"
+          placeholder="时间(非必填)"
+        />
+      </van-form>
+    </van-dialog>
   </div>
 </template>
 
@@ -73,6 +111,7 @@ export default {
   },
   data(){
     return {
+      showAddDialog: false,
       showToday: false,
       weekIndex: 0,
       weekDayIndex: null,
@@ -452,6 +491,14 @@ export default {
             duration: "16:40~17:25"
           },
         ]
+      },
+      addParams: {
+        dayIndex: 0,
+        address: "",
+        courseName: "",
+        teacher: "",
+        time: "",
+        other: ""
       }
     }
   },
@@ -468,6 +515,9 @@ export default {
     }
   },
   methods: {
+    onSubmit(){
+
+    },
     initWeekDate(){
       this.tableConfig.weekDate = []
       const startDate = this.currentWeekInfo.startDate
@@ -490,6 +540,7 @@ export default {
       this.title = item.title
       this.weekDayIndex = moment().weekday()
       this.initWeekDate()
+      
     },
     getWeeks(data){
       let weeks = data.replace(/[^\d-,]/g,"").split(",")
@@ -530,7 +581,7 @@ export default {
         const toCheck = simpleForm[key]
         if (toCheck.every(item => timeList.includes(item))) {  
           timeList = timeList.filter(item => !toCheck.includes(item));
-          timeList.unshift(key)
+          timeList.push(key)
         }
       }
       return timeList
@@ -591,6 +642,54 @@ export default {
           if(c.time) c.time = this.mergeTime(c.time)
         })
       })
+      // 合并本地的日历
+      let addedCourses = localStorage.getItem('localCourses');
+      if(addedCourses){
+        addedCourses = JSON.parse(addedCourses)
+        addedCourses.forEach(v=>{
+          this.weekOption[v.weekIndex].course.push(v)
+        })
+      }
+    },
+    closeAddDialog(){
+      this.addParams = {}
+    },
+    openAddDialog(index){
+      this.addParams.dayIndex = index
+      this.showAddDialog = true
+    },
+    beforeClose(action, done){
+      if (action === 'confirm') {
+        done(false)
+      } else {
+        done();
+      }
+    },
+    addConfirm(){
+      if(!this.addParams.other || !this.addParams.other.trim()){
+        this.$toast('主题不能为空');
+        return
+      }
+      const item = JSON.parse(JSON.stringify(this.addParams))
+      if(item.time) item.time = [item.time]
+      item.weekIndex = this.weekIndex
+      item.local = true
+      this.weekOption[this.weekIndex].course.push(item)
+      this.showAddDialog = false
+
+      let addedCourses = localStorage.getItem('localCourses');
+      if(addedCourses) {
+        addedCourses = JSON.parse(addedCourses)
+      }else {
+        addedCourses = []
+      }
+      addedCourses.push(item)
+
+      localStorage.setItem('localCourses', JSON.stringify(addedCourses));
+    },
+    closeLocalCourse(item){
+      console.log(item)
+      // this.weekOption[this.weekIndex].course.findIndex(v=>v.)
     }
   },
   created(){
@@ -598,6 +697,10 @@ export default {
     this.showToday = (moment().week() - 35) > 0
     if(this.showToday){
       this.handleToday()
+      this.weekOption[this.weekIndex].course.push({
+        dayIndex: this.weekDayIndex,
+        other: "今天"
+      },)
     }
   }
 }
@@ -723,7 +826,6 @@ export default {
           flex: 0 0 50px;
           font-size: 14px;
           z-index: 1;
-          background: #fff;
           line-height: 120px;
           box-sizing: border-box;
           display: flex;
@@ -759,6 +861,14 @@ export default {
             box-shadow: 0 0 5px #d6d3cd;
             margin-right: 20px;
             flex-shrink: 0;
+            position: relative;
+            .closeIcon {
+              position: absolute;
+              right: -8px;
+              top: -8px;
+              font-size: 16px;
+              color: rgba(0,0,0,0.6);
+            }
             &:last-child{
               margin-right: 0;
             }
@@ -790,6 +900,9 @@ export default {
         }
       }
     }
+  }
+  .addform {
+    margin: 30px 0;
   }
 }
 </style>./curriculum.vue./Curriculum.vue
