@@ -98,6 +98,14 @@
         />
       </van-form>
     </van-dialog>
+    <!-- 其他 -->
+     <van-icon class="info-button" @click="showInfo = true" name="info" />
+     <van-dialog v-model="showInfo" title="其他信息" class="other-info-dialog">
+      <div v-for="(item,index) in tableConfig.dayTime" :key="index" class="other-info-item">
+        <span>{{ item.name }}</span>
+        <span>{{ item.duration }}</span>
+      </div>
+    </van-dialog>
   </div>
 </template>
 
@@ -112,6 +120,7 @@ export default {
   data(){
     return {
       showAddDialog: false,
+      showInfo: false,
       showToday: false,
       weekIndex: 0,
       weekDayIndex: null,
@@ -507,6 +516,22 @@ export default {
           {
             name: "第七节",
             duration: "16:40~17:25"
+          },
+          {
+            name: "第八节",
+            duration: "17:35~18:20"
+          },
+          {
+            name: "第九节",
+            duration: "19:10~19:55"
+          },
+          {
+            name: "第十节",
+            duration: "20:05~20:50"
+          },
+          {
+            name: "第十一节",
+            duration: "21:00~21:45"
           },
         ]
       },
@@ -940,6 +965,33 @@ export default {
   }
   .addform {
     margin: 30px 0;
+  }
+  .info-button{
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    box-shadow: 0 0 5px #d6d3cd;
+    border-radius: 100%;
+    color: #f8a603;
+  }
+  .other-info-dialog {
+    /deep/.van-dialog__content {
+      padding: 20px 0;
+    }
+    .other-info-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+
   }
 }
 </style>./curriculum.vue./Curriculum.vue
