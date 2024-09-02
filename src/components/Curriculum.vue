@@ -35,6 +35,7 @@
                     </div>
                     <div class="info-item" v-if="item.address">
                       <van-icon name="location" />
+                      <a href="iosamap://search?keyword=厦门思明区金山路与吕岭路交汇处宝龙一城B1&dev=0&style=2">在高德地图上搜索宝龙一城B1</a>
                       <p>地点：{{ item.address }}</p>
                     </div>
                     <div class="info-item" v-if="item.teacher">
@@ -153,7 +154,9 @@ export default {
             },
             {
               dayIndex: 6,
-              other: "喜乐会"
+              other: "喜乐会 · ME&WE",
+              address: "厦门W酒店",
+              time: ["17:30"]
             },
             {
               dayIndex: 2,
