@@ -674,6 +674,7 @@ export default {
       if(item.time) item.time = [item.time]
       item.weekIndex = this.weekIndex
       item.local = true
+      item.id = new Date().getTime()
       this.weekOption[this.weekIndex].course.push(item)
       this.showAddDialog = false
 
@@ -688,8 +689,26 @@ export default {
       localStorage.setItem('localCourses', JSON.stringify(addedCourses));
     },
     closeLocalCourse(item){
-      console.log(item)
-      // this.weekOption[this.weekIndex].course.findIndex(v=>v.)
+      this.$dialog.confirm({
+        title: '删除',
+        message: '确认删除吗？',
+      })
+      .then(() => {
+        // 删除视图中的日历
+        const idx = this.weekOption[this.weekIndex].course.findIndex(v=>v.id && v.id === item.id)
+        this.weekOption[this.weekIndex].course.splice(idx,1)
+        this.$forceUpdate()
+        // 删除缓存中的日历
+        let addedCourses = localStorage.getItem('localCourses');
+        addedCourses = JSON.parse(addedCourses)
+        const localIdx = addedCourses.findIndex(v=>v.id && v.id === item.id)
+        addedCourses.splice(localIdx,1)
+        localStorage.setItem('localCourses', JSON.stringify(addedCourses));
+      })
+      .catch(() => {
+        // on cancel
+      });
+      
     }
   },
   created(){
