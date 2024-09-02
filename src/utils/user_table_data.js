@@ -150,6 +150,231 @@ const userData = [
         "ZCMC": "8-12周"
     },
     {
+        "WID": "08315475-68d9-474c-bfa3-6dc65fd71ad3",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 2,
+        "JSJCDM": 2,
+        "KSSJ": 855,
+        "JSSJ": 940,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "240a5ac9-848b-4c11-8358-890c62494a06",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 3,
+        "JSJCDM": 3,
+        "KSSJ": 1010,
+        "JSSJ": 1055,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "1cfc9b60-7e96-458b-95dc-53aabab71e55",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 4,
+        "JSJCDM": 4,
+        "KSSJ": 1105,
+        "JSSJ": 1150,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "81cac2cf-1ed9-440f-a2f4-400479dc1d77",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 5,
+        "JSJCDM": 5,
+        "KSSJ": 1430,
+        "JSSJ": 1515,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "57379ab3-74ea-4ec2-8168-099ca07da606",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 6,
+        "JSJCDM": 6,
+        "KSSJ": 1525,
+        "JSSJ": 1610,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "f5994a27-57eb-49c7-8bb8-47b9f75e8808",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000110000000000000000",
+        "XQ": 6,
+        "JCFADM": "01",
+        "KSJCDM": 7,
+        "JSJCDM": 7,
+        "KSSJ": 1640,
+        "JSSJ": 1725,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "13-14周"
+    },
+    {
+        "WID": "f7e7bf41-ae58-47f0-8639-0013a8ff2f38",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000001000000000000000",
+        "XQ": 7,
+        "JCFADM": "01",
+        "KSJCDM": 2,
+        "JSJCDM": 2,
+        "KSSJ": 855,
+        "JSSJ": 940,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "15周"
+    },
+    {
+        "WID": "69536061-fb96-441a-8e31-715d3b72161d",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000001000000000000000",
+        "XQ": 7,
+        "JCFADM": "01",
+        "KSJCDM": 3,
+        "JSJCDM": 3,
+        "KSSJ": 1010,
+        "JSSJ": 1055,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "15周"
+    },
+    {
+        "WID": "e200f918-4dc9-4212-ba68-974083e7daff",
+        "XH": "17720241156017",
+        "BJDM": "20241-14010-1720785692982",
+        "JASDM": "101010401",
+        "JASMC": "庄汉水楼（南强二）401",
+        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
+        "JSXM": "叶卫国",
+        "JSYWM": null,
+        "ZCBH": "000000000000001000000000000000",
+        "XQ": 7,
+        "JCFADM": "01",
+        "KSJCDM": 4,
+        "JSJCDM": 4,
+        "KSSJ": 1105,
+        "JSSJ": 1150,
+        "SJLY": 1,
+        "BJMC": "01",
+        "KCDM": "14010",
+        "KCMC": "信息检索",
+        "KCYWMC": "Information Retrieval",
+        "KBBZ": null,
+        "XKRS": 100,
+        "ZCMC": "15周"
+    },
+    {
         "WID": "9d32ef89-38c8-4f35-a495-5ce7568b3f86",
         "XH": "17720241156017",
         "BJDM": "20241-14014-1721379041738",
@@ -171,7 +396,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -196,7 +421,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -221,7 +446,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -246,7 +471,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -271,7 +496,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -296,7 +521,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -321,7 +546,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -346,7 +571,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -371,7 +596,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -396,7 +621,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -421,7 +646,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -446,7 +671,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 41,
+        "XKRS": 45,
         "ZCMC": "16-17周"
     },
     {
@@ -471,7 +696,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -496,7 +721,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -521,7 +746,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -546,7 +771,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -571,7 +796,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -596,7 +821,7 @@ const userData = [
         "KCMC": "工程经济学",
         "KCYWMC": "Engineering Economics",
         "KBBZ": null,
-        "XKRS": 75,
+        "XKRS": 76,
         "ZCMC": "4,9-10,13-14周"
     },
     {
@@ -621,7 +846,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -646,7 +871,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -671,7 +896,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -696,7 +921,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -721,7 +946,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -746,7 +971,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "4-5周"
     },
     {
@@ -771,7 +996,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -796,7 +1021,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -821,7 +1046,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -846,7 +1071,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -871,7 +1096,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -896,7 +1121,7 @@ const userData = [
         "KCMC": "工程数学",
         "KCYWMC": "Advanced Operation Research",
         "KBBZ": null,
-        "XKRS": 77,
+        "XKRS": 78,
         "ZCMC": "7,11-12周"
     },
     {
@@ -921,7 +1146,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -946,7 +1171,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -971,7 +1196,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -996,7 +1221,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -1021,7 +1246,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -1046,7 +1271,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "2-3,8周"
     },
     {
@@ -1071,7 +1296,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1096,7 +1321,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1121,7 +1346,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1146,7 +1371,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1171,7 +1396,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1196,7 +1421,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "3周"
     },
     {
@@ -1221,7 +1446,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     },
     {
@@ -1246,7 +1471,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     },
     {
@@ -1271,7 +1496,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     },
     {
@@ -1296,7 +1521,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     },
     {
@@ -1321,7 +1546,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     },
     {
@@ -1346,7 +1571,7 @@ const userData = [
         "KCMC": "工程信息管理",
         "KCYWMC": "Engineering Information Management",
         "KBBZ": null,
-        "XKRS": 76,
+        "XKRS": 77,
         "ZCMC": "7周"
     }
 ];
