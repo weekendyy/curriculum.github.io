@@ -154,7 +154,7 @@ export default {
             {
               dayIndex: 6,
               other: "喜乐会 · ME&WE",
-              address: "厦门W酒店",
+              address: "厦门思明区 金山路与吕岭路交汇处宝龙一城B1",
               time: ["17:30"]
             },
             {
