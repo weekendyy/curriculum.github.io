@@ -117,7 +117,19 @@ export default {
       weekDayIndex: null,
       title: "第1周",
       weekOption: [
-        { title: '第1周', date: "9月01日 至 9月07日",startDate: "09-01", },
+        { 
+          title: '第1周',
+          date: "9月01日 至 9月07日",
+          startDate: "09-01",
+          course: [
+            {
+              dayIndex: 6,
+              other: "素质拓展",
+              address: "环岛路offwork",
+              time: ["暂定13:30至21:00"]
+            }
+          ]
+        },
         { 
           title: '第2周',
           date: "9月08日 至 9月14日",
