@@ -26,7 +26,7 @@
                   <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`">
                     <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
                     <div class="info-item" v-if="item.other">
-                      <van-icon :name="item.icon || 'good-job'" />
+                      <van-icon :name="item.icon || 'star'" />
                       <p>{{ item.other }}</p>
                     </div>
                     <div class="info-item" v-if="item.courseName">
