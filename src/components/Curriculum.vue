@@ -203,6 +203,10 @@ export default {
           startDate: "09-29",
           course: [
             {
+              dayIndex: 0,
+              other: "补班"
+            },
+            {
               dayIndex: 6,
               address: "庄汉水楼（南强二）401",
               courseName: "工程数学",
