@@ -9,62 +9,68 @@
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
       <img src="/curriculum.github.io/xiada.png" class="logo" />
-      <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
-      <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
-      <!-- 课程日历 -->
-      <div class="table-box">
-        <div class="depart-line"></div>
-        <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
-          <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
-            <span class="week-text">{{ week }}</span>
-            <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
-          </div>
-          <div class="row-line-two">
-            <template v-if="currentWeekInfo.course">
-              <template v-for="(item,idx) in currentWeekInfo.course">
-                <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
-                  <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`">
-                    <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
-                    <div class="info-item" v-if="item.other">
-                      <van-icon :name="item.icon || 'star'" />
-                      <p>{{ item.other }}</p>
-                    </div>
-                    <div class="info-item" v-if="item.courseName">
-                      <van-icon name="notes" />
-                      <p>课程：{{ item.courseName }}</p>
-                    </div>
-                    <div class="info-item" v-if="item.address">
-                      <van-icon name="location" />
-                      <p>地点：{{ item.address }}</p>
-                    </div>
-                    <div class="info-item" v-if="item.teacher">
-                      <van-icon name="manager" />
-                      <p>老师：{{ item.teacher }}</p>
-                    </div>
-                    <div class="info-item" style="align-items: flex-start;" v-if="item.time">
-                      <van-icon name="clock" style="margin-top: 3px;" />
-                      <div class="clock-item"><p>时间：</p>
-                        <div >
-                          <p style="text-align: left;" v-for="time in item.time" :key="time">{{time}}</p>
-                        </div>
+    </div>
+    <!-- 课程日历 -->
+    <div class="table-box">
+      <div class="depart-line"></div>
+      <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
+        <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
+          <span class="week-text">{{ week }}</span>
+          <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
+        </div>
+        <div class="row-line-two">
+          <template v-if="currentWeekInfo.course">
+            <template v-for="(item,idx) in currentWeekInfo.course">
+              <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
+                <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`" @click="cardDetail(item)">
+                  <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
+                  <div class="info-item" v-if="item.other">
+                    <van-icon :name="item.icon || 'star'" />
+                    <p>{{ item.other }}</p>
+                  </div>
+                  <div class="info-item" v-if="item.courseName">
+                    <van-icon name="notes" />
+                    <p>课程：{{ item.courseName }}</p>
+                  </div>
+                  <div class="info-item" v-if="item.address">
+                    <van-icon name="location" />
+                    <p>地点：{{ item.address }}</p>
+                  </div>
+                  <div class="info-item" v-if="item.teacher">
+                    <van-icon name="manager" />
+                    <p>老师：{{ item.teacher }}</p>
+                  </div>
+                  <div class="info-item" style="align-items: flex-start;" v-if="item.time">
+                    <van-icon name="clock" style="margin-top: 3px;" />
+                    <div class="clock-item"><p>时间：</p>
+                      <div >
+                        <p style="text-align: left;" v-for="time in item.time" :key="time">{{time}}</p>
                       </div>
                     </div>
-                    <div class="info-item" v-if="item.remark">
-                      <van-icon name="manager" />
-                      <p>备注：{{ item.remark }}</p>
-                    </div>
-                    
                   </div>
+                  <div class="info-item" style="align-items: flex-start;" v-if="item.content">
+                    <van-icon name="description" style="margin-top: 3px;" />
+                    <div class="clock-item"><p class="clock-item-title">内容：</p>
+                      <div >
+                        <p class="clock-item-content" style="text-align: left;" v-for="content in item.content" :key="content">{{content}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="info-item" v-if="item.remark">
+                    <van-icon name="manager" />
+                    <p>备注：{{ item.remark }}</p>
+                  </div>
+                  
                 </div>
-              </template>
+              </div>
             </template>
-          </div>
+          </template>
         </div>
       </div>
     </div>
     <!-- 添加日历 -->
     <van-dialog v-model="showAddDialog" title="添加日历" show-cancel-button @closed="closeAddDialog" @confirm="addConfirm" :beforeClose="beforeClose">
-      <van-form @submit="onSubmit" class="addform">
+      <van-form class="addform">
         <van-field
           v-model="addParams.other"
           name="主题"
@@ -99,26 +105,38 @@
       </van-form>
     </van-dialog>
     <!-- 其他 -->
-     <van-icon class="info-button" @click="showInfo = true" name="info" />
      <van-dialog v-model="showInfo" title="其他信息" class="other-info-dialog">
       <div v-for="(item,index) in tableConfig.dayTime" :key="index" class="other-info-item">
         <span>{{ item.name }}</span>
         <span>{{ item.duration }}</span>
       </div>
     </van-dialog>
+    <!-- 底部按钮 -->
+    <div class="buttom-buttons">
+      <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
+        <van-icon class="info-button" @click="showInfo = true" name="info" />
+      <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
+    </div>
+    <!-- 素质拓展 -->
+    <!-- <PdfViewer pdfSource="/curriculum.github.io/test.pdf" :show="showQD"></PdfViewer> -->
   </div>
 </template>
 
 <script>
 import moment from "moment"
 import remoteData from "../utils/user_table_data"
+// import PdfViewer from "./pdfViewer.vue"
 
 export default {
   name: 'SchoolTable',
+  components: {
+    // PdfViewer
+  },
   props: {
   },
   data(){
     return {
+      showQD: false,
       showAddDialog: false,
       showInfo: false,
       showToday: false,
@@ -134,8 +152,29 @@ export default {
             {
               dayIndex: 6,
               other: "素质拓展",
-              address: "环岛路offwork",
-              time: ["暂定13:30至21:00"]
+              address: "OFF WORK在海边(思明区环岛路店)",
+              time: ["班车：14:00到学校集合","自驾：14:30到OFF WORK"],
+              content: [
+                "统一派车上车地点: 本部建文楼门口（管理学院大门正对面）",
+                "乘车时间：2024年09月7日（周六）下午14:00（天气预报有雷阵雨，请大家备好雨具）",
+                "统一着ME校友服",
+                "14:00-14:30【出发】：团队乘车出发， 前往活动基地",
+                "14:30-15:00【团队破冰】：管理科学系领导致辞开营、纪律整顿、热身破冰",
+                "15:00-15:30【团队建设】：团队组建、口号练习、风采展示",
+                "15:30-17:30【直呼其名】：队员围成一圈，培训师随机选择一名队员进入圈中，让他大喊出自己的名字，然后其他成员在外面一起大喊三声他的名字，完成后该成员回到圈中，下一个成员继续进入圈中介绍自己，直到大家都将自己介绍一遍。",
+                "15:30-17:30【卡牌风云】：裁判开始后，迅速跑到卡片前翻卡，按照顺序依次翻开，错误则需盖上、一次只能翻开一张。按照顺序依次翻开、确认卡片内容排序正确，率先完成的队伍获得游戏胜利。",
+                "15:30-17:30【团队金字塔】：所有学员一起拉紧绳头来控制网球移动，用网球一个一个往“金字塔”上放置。金字塔按照培训师分发任务书搭好模型。根据项目完成的使用时间长短得出名次。",
+                "17:30-18:00【复盘颁奖】：总结分享、合影留念、颁奖",
+                "18:00-21:00：沙滩烤肉，休闲放松，进一步加深同学情谊（新生部分导师见面会）",
+                "21:00-21:30：活动结束，安排回程",
+              ]
+            },
+            {
+              dayIndex: 6,
+              other: "新生入学教育活动",
+              address: "南强二号楼401教室",
+              time: ["上午9:30"],
+              content: ["班委选举与自我介绍：部分职位将进行竞选，鼓励每位同学积极参与，共同构建和谐的班级氛围。","入学教育：全面了解MEM项目培养方案、学习要求及校园生活指南。","ME校友会简介：深入了解校友网络，为未来职业发展与交流合作奠定坚实基础。"]
             }
           ]
         },
@@ -150,6 +189,13 @@ export default {
               courseName: "工程信息管理",
               teacher: "彭丽芳",
               time: ["上午：08:55 - 11:50 三节课","下午：14:30 - 17:25  三节课"]
+            },
+            {
+              dayIndex: 0,
+              address: "庄汉水楼（南强二）401",
+              other: "新老生见面会",
+              teacher: "陈君钤",
+              time: ["中午 13:00 ~ 14:00"]
             }
           ]
         },
@@ -558,9 +604,6 @@ export default {
     }
   },
   methods: {
-    onSubmit(){
-
-    },
     initWeekDate(){
       this.tableConfig.weekDate = []
       const startDate = this.currentWeekInfo.startDate
@@ -752,7 +795,19 @@ export default {
         // on cancel
       });
       
-    }
+    },
+    cardDetail(item){
+      if(!item.click) return
+      const { type } = item
+      switch (type) {
+        case "qualityDevelopment":
+          this.showQD = true
+          break;
+      
+        default:
+          break;
+      }
+    },
   },
   created(){
     this.initData()
@@ -764,13 +819,15 @@ export default {
         other: "今天"
       },)
     }
-  }
+  },
+  
 }
 </script>
 
 <style scoped lang="less">
 
 .SchoolTable {
+  padding-top: 48px;
   /deep/.van-dropdown-menu__title {
     font-size: 17px;
     font-weight: 600;
@@ -782,7 +839,11 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 100;
     .today {
       line-height: 2;
       font-size: 14px;
@@ -803,35 +864,7 @@ export default {
       width: 90px;
       z-index: 100;
     }
-    .next{
-      line-height: 2;
-      font-size: 25px;
-      padding: 0 15px;
-      border-radius: 5px;
-      background-color: #fac863;
-      color: #fff;
-      position: fixed;
-      left: 20px;
-      bottom: 30px;
-      box-shadow: 0 0 5px #d6d3cd;
-      z-index: 10;
-    }
-    .prev {
-      line-height: 2;
-      font-size: 25px;
-      padding: 0 15px;
-      border-radius: 5px;
-      background-color: #fac863;
-      color: #fff;
-      position: fixed;
-      bottom: 30px;
-      box-shadow: 0 0 5px #d6d3cd;
-      z-index: 10;
-      right: 20px;
-    }
-    .disabled {
-      filter: grayscale(100%);
-    }
+    
     /deep/.van-dropdown-item  {
       .van-popup {
         .active-color {
@@ -857,108 +890,124 @@ export default {
       width: 100%;
       background: #fff;
     }
-    .table-box {
+  }
+  .table-box {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #f5f3f3;
+    border-bottom: 1px solid #f5f3f3;
+    box-sizing: border-box;
+    border-top: 1px solid #fac863;
+    .depart-line{
+      width: 1px;
+      height: 100%;
+      background: #000;
+    }
+    .week-day {
       width: 100%;
-      background: #fff;
+      font-size: 14px;
       display: flex;
-      flex-direction: column;
-      border-top: 1px solid #f5f3f3;
-      border-bottom: 1px solid #f5f3f3;
-      box-sizing: border-box;
-      border-top: 1px solid #fac863;
-      .depart-line{
-        width: 1px;
+      align-items: center;
+      position: relative;
+      box-sizing: content-box;
+      border-bottom: 1px solid #ddd;
+      min-height: 50px;
+      .row-line-one {
+        position: sticky;
+        left: 0;
+        top: 0;
         height: 100%;
-        background: #000;
-      }
-      .week-day {
-        width: 100%;
+        flex: 0 0 50px;
         font-size: 14px;
+        z-index: 1;
+        line-height: 120px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .week-text {
+          line-height: 1;
+          font-weight: 600;
+        }
+        .date {
+          font-size: 11px;
+          margin-top: 5px;
+          color: #f8a603;
+        }
+      }
+      .row-line-two {
+        flex: 1;
+        border-left: 1px solid #ddd;
+        min-height: 50px;
+      }
+      .weekday-row {
         display: flex;
         align-items: center;
-        position: relative;
-        box-sizing: content-box;
-        border-bottom: 1px solid #ddd;
-        min-height: 50px;
-        .row-line-one {
-          position: sticky;
-          left: 0;
-          top: 0;
-          height: 100%;
-          flex: 0 0 50px;
-          font-size: 14px;
-          z-index: 1;
-          line-height: 120px;
-          box-sizing: border-box;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          .week-text {
-            line-height: 1;
-            font-weight: 600;
-          }
-          .date {
-            font-size: 11px;
-            margin-top: 5px;
-            color: #f8a603;
-          }
-        }
-        .row-line-two {
-          flex: 1;
-          border-left: 1px solid #ddd;
-          min-height: 50px;
-        }
-        .weekday-row {
-          display: flex;
-          align-items: center;
-          box-sizing: border-box;
-          padding: 10px;
+        box-sizing: border-box;
+        padding: 10px;
+        flex-shrink: 0;
+        .class-card {
+          background: linear-gradient(to left top, #fac863,#f3d28f);
+          padding: 7px;
+          border-radius: 8px;
+          box-shadow: 0 0 5px #d6d3cd;
+          margin-right: 20px;
           flex-shrink: 0;
-          overflow-x: scroll;
-          .class-card {
-            background: linear-gradient(to left top, #fac863,#f3d28f);
-            padding: 7px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px #d6d3cd;
-            margin-right: 20px;
-            flex-shrink: 0;
-            position: relative;
-            .closeIcon {
-              position: absolute;
-              right: -8px;
-              top: -8px;
-              font-size: 16px;
-              color: rgba(0,0,0,0.6);
+          position: relative;
+          max-width: 100%;
+          box-sizing: border-box;
+          .closeIcon {
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            font-size: 16px;
+            color: rgba(0,0,0,0.6);
+          }
+          &:last-child{
+            margin-right: 0;
+          }
+          .info-item {
+            display: flex;
+            align-items: center;
+            .van-icon {
+              width: 12px;
+              height: 12px;
+              font-size: 12px;
+              margin-right: 4px;
+              color: #fff;
+              font-weight: lighter;
             }
-            &:last-child{
-              margin-right: 0;
+            p{
+              margin: 0;
+              font-size: 12px;
+              line-height: 18px;
+              color: #fff;
             }
-            .info-item {
+            .clock-item {
               display: flex;
-              align-items: center;
-              .van-icon {
-                width: 12px;
-                height: 12px;
-                font-size: 12px;
-                margin-right: 4px;
-                color: #fff;
-                font-weight: lighter;
+              .clock-item-title {
+                flex-shrink: 0;
               }
-              p{
-                margin: 0;
-                font-size: 12px;
-                line-height: 18px;
-                color: #fff;
-              }
-              .clock-item {
-                display: flex;
+              .clock-item-content {
+                margin-bottom: 10px;
+                &::before{
+                  content: "";
+                  width: 8px;
+                  height: 8px;
+                  border-radius: 100%;
+                  background-color: #eee3cefb;
+                  display: inline-block;
+                  margin-right: 7px;
+                }
               }
             }
           }
-          .other-bg {
-            background: linear-gradient(to left top, #FF626E, #FFBE71)
-          }
+        }
+        .other-bg {
+          background: linear-gradient(to left top, #FF626E, #FFBE71)
         }
       }
     }
@@ -966,18 +1015,7 @@ export default {
   .addform {
     margin: 30px 0;
   }
-  .info-button{
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    margin-left: -20px;
-    width: 40px;
-    height: 40px;
-    font-size: 40px;
-    box-shadow: 0 0 5px #d6d3cd;
-    border-radius: 100%;
-    color: #f8a603;
-  }
+  
   .other-info-dialog {
     /deep/.van-dialog__content {
       padding: 20px 0;
@@ -993,5 +1031,50 @@ export default {
     }
 
   }
+
+  .buttom-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 30px;
+    z-index: 1111;
+    background: #fff;
+    box-sizing: border-box;
+    .info-button{
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+      box-shadow: 0 0 5px #d6d3cd;
+      border-radius: 100%;
+      color: #f8a603;
+    }
+    .next{
+      line-height: 2;
+      font-size: 20px;
+      padding: 0 10px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
+    }
+    .prev {
+      line-height: 2;
+      font-size: 20px;
+      padding: 0 10px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
+    }
+    .disabled {
+      filter: grayscale(100%);
+    }
+  }
 }
-</style>./curriculum.vue./Curriculum.vue
+</style>
