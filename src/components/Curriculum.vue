@@ -828,6 +828,7 @@ export default {
 
 .SchoolTable {
   padding-top: 48px;
+  padding-bottom: 90px;
   /deep/.van-dropdown-menu__title {
     font-size: 17px;
     font-weight: 600;
