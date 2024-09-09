@@ -197,6 +197,10 @@ export default {
               other: "新老生见面会",
               teacher: "陈君钤",
               time: ["中午 13:00 ~ 14:00"]
+            },
+            {
+              dayIndex: 6,
+              other: "补班",
             }
           ]
         },
