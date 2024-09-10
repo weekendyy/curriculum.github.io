@@ -201,6 +201,10 @@ export default {
             {
               dayIndex: 6,
               other: "补班",
+            },
+            {
+              dayIndex: 2,
+              other: "教师节",
             }
           ]
         },
