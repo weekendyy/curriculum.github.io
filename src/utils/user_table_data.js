@@ -21,7 +21,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -46,7 +46,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -71,7 +71,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -96,7 +96,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -121,7 +121,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -146,7 +146,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 38,
         "ZCMC": "8-12周"
     },
     {
@@ -396,7 +396,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -421,7 +421,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -446,7 +446,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -471,7 +471,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -496,7 +496,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -521,7 +521,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -546,7 +546,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -571,7 +571,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -596,7 +596,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -621,7 +621,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -646,7 +646,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -671,7 +671,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 44,
+        "XKRS": 43,
         "ZCMC": "16-17周"
     },
     {
@@ -1429,7 +1429,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1454,7 +1454,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1479,7 +1479,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1504,7 +1504,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1529,7 +1529,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1554,7 +1554,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "学生公寓教学楼204",
+        "JASMC": "祖营楼（嘉庚四）106",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
