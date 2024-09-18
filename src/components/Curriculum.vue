@@ -670,7 +670,7 @@ export default {
     }
   }
   .notice-content {
-    position: absolute;
+    position: fixed;
     right: 50px;
     top: 9px;
     width: 0;
