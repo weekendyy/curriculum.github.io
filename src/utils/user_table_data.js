@@ -21,7 +21,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -46,7 +46,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -71,7 +71,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -96,7 +96,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -121,7 +121,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -146,7 +146,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 38,
+        "XKRS": 37,
         "ZCMC": "8-12周"
     },
     {
@@ -1429,7 +1429,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1454,7 +1454,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1479,7 +1479,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1504,7 +1504,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1529,7 +1529,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
@@ -1554,7 +1554,7 @@ const userData = [
         "XH": "17720241156017",
         "BJDM": "20241-G10300700400007-1720785696330",
         "JASDM": "103010204",
-        "JASMC": "祖营楼（嘉庚四）106",
+        "JASMC": "学生公寓教学楼204",
         "JASYWMC": "Teaching Building at Haiyun Student Dormitories204",
         "JSXM": "彭丽芳",
         "JSYWM": null,
