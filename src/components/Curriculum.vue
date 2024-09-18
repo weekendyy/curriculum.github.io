@@ -151,7 +151,7 @@ export default {
       showAddDialog: false,
       showInfo: false,
       showToday: false,
-      showNotice: true,
+      showNotice: false,
       weekIndex: 0,
       weekDayIndex: null,
       title: "第1周",
@@ -686,6 +686,7 @@ export default {
     padding: 20px;
     font-size: 14px;
     color: #fff;
+    transform: scale(0);
     .header {
       font-size: 17px;
       font-weight: 600;
@@ -731,7 +732,7 @@ export default {
     opacity: 1;
     width: calc(100% - 40px);
     height: 200px;
-    box-shadow: 0 0 5px #d6d3cd;
+    transform: scale(1);
   }
 }
 </style>
