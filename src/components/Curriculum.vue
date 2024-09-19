@@ -671,14 +671,11 @@ export default {
   }
   .notice-content {
     position: fixed;
-    right: 50px;
-    top: 9px;
-    width: 0;
-    height: 0;
-    opacity: 0.2;
+    right: 20px;
+    top: 50px;
+    opacity: 0;
     pointer-events: none;
     transition: 0.3s;
-    transform-origin: right top;
     background-color: #fac863;
     border-radius: 5px;
     z-index: 111;
@@ -686,7 +683,9 @@ export default {
     padding: 20px;
     font-size: 14px;
     color: #fff;
-    transform: scale(0);
+    transform: scale(0.8);
+    width: calc(100% - 40px);
+    height: 200px;
     .header {
       font-size: 17px;
       font-weight: 600;
@@ -709,6 +708,10 @@ export default {
       }
     }
   }
+  .show-notice-content {
+    opacity: 1;
+    transform: scale(1);
+  }
   .masking {
     position: fixed;
     width: 100%;
@@ -726,13 +729,6 @@ export default {
     pointer-events: auto;
     backdrop-filter: blur(10px);
   }
-  .show-notice-content {
-    right: 20px;
-    top: 50px;
-    opacity: 1;
-    width: calc(100% - 40px);
-    height: 200px;
-    transform: scale(1);
-  }
+  
 }
 </style>
