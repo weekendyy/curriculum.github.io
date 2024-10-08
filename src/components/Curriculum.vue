@@ -205,7 +205,8 @@ export default {
       this.initWeekDate()
     },
     handleNotice(){
-      this.showNotice = !this.showNotice
+      return
+      // this.showNotice = !this.showNotice
     },
     getWeeks(data){
       let weeks = data.replace(/[^\d-,]/g,"").split(",")
@@ -449,6 +450,7 @@ export default {
       top: 9px;
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
+      filter: grayscale(100%);
     }
     .logo {
       position: absolute;
