@@ -134,7 +134,7 @@
 
 <script>
 import moment from "moment"
-import remoteData from "../utils/user_table_data"
+import request from "../utils/request"
 import { weekOption, tableConfig, importantEvent } from "../utils/const"
 // import PdfViewer from "./pdfViewer.vue"
 
@@ -147,6 +147,7 @@ export default {
   },
   data(){
     return {
+      loading: false,
       showQD: false,
       showAddDialog: false,
       showInfo: false,
@@ -252,69 +253,84 @@ export default {
       }
       return timeList
     },
-    initData(){
-      // 清除weekOption数据
-      this.weekOption.forEach(v=>{
-        if(v.course) {
-          v.course = v.course.filter(v=> !!v.other)
-        }else{
-          v.course = []
-        }
-      })
-      remoteData.map(v=>{
-        const weeks = this.getWeeks(v.ZCMC)
-        const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
-        const item = {
-          dayIndex: v.XQ === 7 ? 0 : v.XQ,
-          address: v.JASMC,
-          courseName: v.KCMC,
-          teacher: v.JSXM,
-          remark: v.KBBZ,
-          time: [`第${v.KSJCDM}节 ${duration}`],
-          duration,
-          weeks,
-          courseIndex: v.KSJCDM,
-          KCDM: v.KCDM
-        }
-        weeks.forEach(w=>{
-          this.weekOption[w-1].course.push(JSON.parse(JSON.stringify(item)))
-        })
-      })
-      // 合并课程
-      this.weekOption.forEach((v,idx)=>{
-        const courses = []
-        v.course.forEach(c=>{
-          if(courses.length === 0) {
-            courses.push(c)
+    async initData(){
+      this.loading = true
+      try {
+        // 清除weekOption数据
+        this.weekOption.forEach(v=>{
+          if(v.course) {
+            v.course = v.course.filter(v=> !!v.other)
           }else{
-            let theSameIndex = -1
-            courses.forEach((item,index)=>{
-              if(this.theSameCourse(item,c)){
-                theSameIndex = index
-              }
-            })
-            if(theSameIndex === -1) {
-              courses.push(c)
-            }else{
-              courses[theSameIndex].time.push(`第${c.courseIndex}节 ${c.duration}`)
-            }
+            v.course = []
           }
         })
-        this.weekOption[idx].course = courses
-      })
-      // 简化课程时间
-      this.weekOption.forEach(v=>{
-        v.course.forEach(c=>{
-          if(c.time) c.time = this.mergeTime(c.time)
+        
+        // 从接口获取数据
+        const reqData = {
+          username: "17720241156017",
+          password: "WEcan5798045.."
+        }
+        const { data } = await request.post('/timetable',reqData)
+        data.map(v=>{
+          const weeks = this.getWeeks(v.ZCMC)
+          const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
+          const item = {
+            dayIndex: v.XQ === 7 ? 0 : v.XQ,
+            address: v.JASMC,
+            courseName: v.KCMC,
+            teacher: v.JSXM,
+            remark: v.KBBZ,
+            time: [`第${v.KSJCDM}节 ${duration}`],
+            duration,
+            weeks,
+            courseIndex: v.KSJCDM,
+            KCDM: v.KCDM
+          }
+          weeks.forEach(w=>{
+            this.weekOption[w-1].course.push(JSON.parse(JSON.stringify(item)))
+          })
         })
-      })
-      // 合并本地的日历
-      let addedCourses = localStorage.getItem('localCourses');
-      if(addedCourses){
-        addedCourses = JSON.parse(addedCourses)
-        addedCourses.forEach(v=>{
-          this.weekOption[v.weekIndex].course.push(v)
+        // 合并课程
+        this.weekOption.forEach((v,idx)=>{
+          const courses = []
+          v.course.forEach(c=>{
+            if(courses.length === 0) {
+              courses.push(c)
+            }else{
+              let theSameIndex = -1
+              courses.forEach((item,index)=>{
+                if(this.theSameCourse(item,c)){
+                  theSameIndex = index
+                }
+              })
+              if(theSameIndex === -1) {
+                courses.push(c)
+              }else{
+                courses[theSameIndex].time.push(`第${c.courseIndex}节 ${c.duration}`)
+              }
+            }
+          })
+          this.weekOption[idx].course = courses
         })
+        // 简化课程时间
+        this.weekOption.forEach(v=>{
+          v.course.forEach(c=>{
+            if(c.time) c.time = this.mergeTime(c.time)
+          })
+        })
+        // 合并本地的日历
+        let addedCourses = localStorage.getItem('localCourses');
+        if(addedCourses){
+          addedCourses = JSON.parse(addedCourses)
+          addedCourses.forEach(v=>{
+            this.weekOption[v.weekIndex].course.push(v)
+          })
+        }
+      } catch (error) {
+        console.error('获取课表数据失败:', error)
+        this.$toast('获取课表数据失败')
+      } finally {
+        this.loading = false
       }
     },
     closeAddDialog(){
@@ -389,8 +405,9 @@ export default {
       }
     },
   },
-  created(){
-    this.initData()
+  async created(){
+    await this.initData()
+    this.initWeekDate()
     this.showToday = (moment().week() - 35) > 0
     if(this.showToday){
       this.handleToday()
@@ -405,7 +422,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-
 .SchoolTable {
   padding-top: 48px;
   padding-bottom: 90px;

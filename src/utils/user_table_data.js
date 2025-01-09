@@ -21,7 +21,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -46,7 +46,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -71,7 +71,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -96,7 +96,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -121,7 +121,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -146,7 +146,7 @@ const userData = [
         "KCMC": "研究生英语",
         "KCYWMC": "Graduate English",
         "KBBZ": null,
-        "XKRS": 37,
+        "XKRS": 36,
         "ZCMC": "8-12周"
     },
     {
@@ -171,7 +171,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -196,7 +196,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -221,7 +221,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -246,7 +246,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -271,7 +271,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -296,7 +296,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "13-14周"
     },
     {
@@ -321,7 +321,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "15周"
     },
     {
@@ -346,7 +346,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "15周"
     },
     {
@@ -371,7 +371,7 @@ const userData = [
         "KCMC": "信息检索",
         "KCYWMC": "Information Retrieval",
         "KBBZ": null,
-        "XKRS": 100,
+        "XKRS": 101,
         "ZCMC": "15周"
     },
     {
@@ -396,7 +396,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -421,7 +421,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -446,7 +446,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -471,7 +471,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -496,7 +496,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -521,7 +521,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -546,7 +546,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -571,7 +571,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -596,7 +596,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -621,7 +621,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -646,7 +646,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
@@ -671,7 +671,7 @@ const userData = [
         "KCMC": "项目管理概论(ME)",
         "KCYWMC": "Project Management Introduction",
         "KBBZ": "因考试周原因，还有一天课程未上系统，后续通知",
-        "XKRS": 43,
+        "XKRS": 40,
         "ZCMC": "16-17周"
     },
     {
