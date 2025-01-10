@@ -12,7 +12,7 @@
       <img src="/curriculum.github.io/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
-    <div class="table-box">
+    <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">
       <div class="depart-line"></div>
       <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
         <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
@@ -116,7 +116,7 @@
     <div class="buttom-buttons">
       <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
         <van-icon class="info-button" @click="showInfo = true" name="info" />
-      <van-icon :class="`prev ${weekIndex >= 16 ? 'disabled':''}`" @click="()=>weekIndex < 16 && handleDropdownItem(weekIndex + 1)" name="arrow" />
+      <van-icon :class="`prev ${weekIndex >= scheduleConfig.totalWeeks-1 ? 'disabled':''}`" @click="()=>weekIndex < scheduleConfig.totalWeeks-1 && handleDropdownItem(weekIndex + 1)" name="arrow" />
     </div>
     <!-- 公告内容 -->
     <div>
@@ -136,6 +136,7 @@
 import moment from "moment"
 import request from "../utils/request"
 import { weekOption, tableConfig, importantEvent } from "../utils/const"
+import { scheduleConfig } from '../config/schedule.js' 
 // import PdfViewer from "./pdfViewer.vue"
 
 export default {
@@ -147,6 +148,8 @@ export default {
   },
   data(){
     return {
+      pageChangeLoading: false,
+      scheduleConfig,
       loading: false,
       showQD: false,
       showAddDialog: false,
@@ -186,10 +189,18 @@ export default {
       this.tableConfig.weekDate = []
       const startDate = this.currentWeekInfo.startDate
       for(let i = 0; i < 7; i++){
-        this.tableConfig.weekDate.push(moment("2024-"+startDate).add(i, 'days').format("MM-DD"))
+        this.tableConfig.weekDate.push(moment(startDate).add(i, 'days').format("MM-DD"))
       }
     },
     handleDropdownItem(index, toggle){
+      // 添加动画
+      this.pageChangeLoading = true
+      
+      // 动画结束后移除类
+      setTimeout(() => {
+        this.pageChangeLoading = false
+      }, 100)
+
       const item = this.weekOption[index]
       this.title = item.title
       this.weekIndex = index
@@ -198,9 +209,12 @@ export default {
       this.initWeekDate()
     },
     handleToday(){
-      const weekIndex = moment().week() - 36
-      this.weekIndex = weekIndex
-      const item = this.weekOption[weekIndex]
+      // 计算当前周数
+      const today = moment()
+      const startDate = moment(scheduleConfig.startDate)
+      const weekIndex = Math.floor(today.diff(startDate, 'days') / 7)
+      this.weekIndex = Math.min(Math.max(weekIndex, 0), scheduleConfig.totalWeeks - 1)
+      const item = this.weekOption[this.weekIndex]
       this.title = item.title
       this.weekDayIndex = moment().weekday()
       this.initWeekDate()
@@ -243,6 +257,7 @@ export default {
       const simpleForm = {
         "上午：08:55 - 11:50 三节课": ["第2节 8:55 - 9:40", "第3节 10:10 - 10:55","第4节 11:05 - 11:50"],
         "下午：14:30 - 17:25  三节课": ["第5节 14:30 - 15:15", "第6节 15:25 - 16:10","第7节 16:40 - 17:25"],
+        "晚上：17:10 - 21:45  三节课": ["第9节 19:10 - 19:55", "第10节 20:05 - 20:50","第11节 21:00 - 21:45"],
       }
       for(let key in simpleForm){
         const toCheck = simpleForm[key]
@@ -255,6 +270,8 @@ export default {
     },
     async initData(){
       this.loading = true
+      this.$loading.show()
+      console.log(this.weekOption)
       try {
         // 清除weekOption数据
         this.weekOption.forEach(v=>{
@@ -286,8 +303,9 @@ export default {
             courseIndex: v.KSJCDM,
             KCDM: v.KCDM
           }
+          console.log(weeks)
           weeks.forEach(w=>{
-            this.weekOption[w-1].course.push(JSON.parse(JSON.stringify(item)))
+            this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
           })
         })
         // 合并课程
@@ -331,6 +349,7 @@ export default {
         this.$toast('获取课表数据失败')
       } finally {
         this.loading = false
+        this.$loading.hide()
       }
     },
     closeAddDialog(){
@@ -408,7 +427,11 @@ export default {
   async created(){
     await this.initData()
     this.initWeekDate()
-    this.showToday = (moment().week() - 35) > 0
+    // 判断是否显示今天按钮
+    const today = moment()
+    const startDate = moment(scheduleConfig.startDate)
+    const endDate = moment(scheduleConfig.startDate).add(scheduleConfig.totalWeeks, 'weeks')
+    this.showToday = today.isBetween(startDate, endDate, null, '[]')
     if(this.showToday){
       this.handleToday()
       this.weekOption[this.weekIndex].course.push({
@@ -582,7 +605,7 @@ export default {
           }
           .info-item {
             display: flex;
-            align-items: center;
+            align-items: baseline;
             .van-icon {
               width: 12px;
               height: 12px;
@@ -596,6 +619,7 @@ export default {
               font-size: 12px;
               line-height: 18px;
               color: #fff;
+              text-align: left;
             }
             .clock-item {
               display: flex;
@@ -622,6 +646,9 @@ export default {
         }
       }
     }
+  }
+  .animation-table {
+    animation: pageturning 0.1s ease;
   }
   .addform {
     margin: 30px 0;
@@ -664,7 +691,7 @@ export default {
       color: #f8a603;
     }
     .next{
-      line-height: 2;
+      line-height: 1.7;
       font-size: 20px;
       padding: 0 10px;
       border-radius: 5px;
@@ -674,7 +701,7 @@ export default {
       z-index: 10;
     }
     .prev {
-      line-height: 2;
+      line-height: 1.7;
       font-size: 20px;
       padding: 0 10px;
       border-radius: 5px;
@@ -748,5 +775,14 @@ export default {
     backdrop-filter: blur(10px);
   }
   
+}
+
+@keyframes pageturning {
+  0% {
+    filter: blur(0);
+  }
+  100% {
+    filter: blur(3px);
+  }
 }
 </style>

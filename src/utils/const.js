@@ -1,104 +1,37 @@
-export const weekOption = [
-  { 
-    title: '第1周',
-    date: "9月01日 至 9月07日",
-    startDate: "09-01",
-    course: []
-  },
-  { 
-    title: '第2周',
-    date: "9月08日 至 9月14日",
-    startDate: "09-08",
-    course: []
-  },
-  { 
-    title: '第3周',
-    date: "9月15日 至 9月21日",
-    startDate: "09-15",
-    course: []
-  },
-  { 
-    title: '第4周',
-    date: "9月22日 至 9月28日",
-    startDate: "09-22",
-    course: []
-  },
-  { 
-    title: '第5周',
-    date: "9月29日 至 10月05日",
-    startDate: "09-29",
-    course: []
-  },
-  { 
-    title: '第6周',
-    date: "10月06日 至 10月12日",
-    startDate: "10-06",
-    course: []
-  },
-  { 
-    title: '第7周',
-    date: "10月13日 至 10月19日",
-    startDate: "10-13",
-    course: []
-  },
-  { 
-    title: '第8周',
-    date: "10月20日 至 10月26日",
-    startDate: "10-20",
-    course: []
-  },
-  { 
-    title: '第9周',
-    date: "10月27日 至 11月02日",
-    startDate: "10-27",
-    course: []
-  },
-  {
-    title: '第10周',
-    date: "11月03日 至 11月09日",
-    startDate: "11-03",
-    course: []
-  },
-  { 
-    title: '第11周',
-    date: "11月10日 至 11月16日",
-    startDate: "11-10",
-    course: []
-  },
-  {
-    title: '第12周',
-    date: "11月17日 至 11月23日",
-    startDate: "11-17",
-    course: []
-  },
-  {
-    title: '第13周',
-    date: "11月24日 至 11月30日",
-    startDate: "11-24",
-    course: []
-  },
-  {
-    title: '第14周',
-    date: "12月01日 至 12月07日",
-    startDate: "12-01",
-    course: []
-  },
-  { title: '第15周', date: "12月08日 至 12月14日",startDate: "12-08", },
-  {
-    title: '第16周',
-    date: "12月15日 至 12月21日",
-    startDate: "12-15",
-    course: []
-  },
-  {
-    title: '第17周',
-    date: "12月22日 至 12月28日",
-    startDate: "12-22",
-    course: []
-  },
-]
+import { scheduleConfig } from '../config/schedule.js'
 
-export const tableConfig = {
+// 计算指定周数的日期范围
+const getWeekDates = (startDate = scheduleConfig.startDate, weeks = scheduleConfig.totalWeeks) => {
+  const result = []
+  const start = new Date(startDate)
+  
+  for (let i = 0; i < weeks; i++) {
+    const weekStart = new Date(start)
+    weekStart.setDate(start.getDate() + i * 7)
+    
+    const weekEnd = new Date(weekStart)
+    weekEnd.setDate(weekStart.getDate() + 6)
+    
+    const formatDate = (date) => {
+      const month = date.getMonth() + 1
+      const day = date.getDate()
+      return `${month}月${day}日`
+    }
+    
+    result.push({
+      title: `第${i + 1}周`,
+      date: `${formatDate(weekStart)} 至 ${formatDate(weekEnd)}`,
+      startDate: `${weekStart.getFullYear()}-${String(weekStart.getMonth() + 1).padStart(2, '0')}-${String(weekStart.getDate()).padStart(2, '0')}`,
+      course: []
+    })
+  }
+  
+  return result
+}
+
+export const weekOption = getWeekDates()  // 下拉菜单
+
+export const tableConfig = {  // 主表格配置
   weekDay: ["周天","周一","周二","周三","周四","周五","周六"],
   weekDate: [],
   dayTime: [

@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Loading from './plugins/loading'
+
+Vue.use(Loading)
 import { Button, Toast, Dialog, Cell, CellGroup, DropdownMenu, DropdownItem, Icon, Form, Field } from 'vant';
 
 Vue.use(Button);
