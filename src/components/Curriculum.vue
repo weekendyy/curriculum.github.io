@@ -9,7 +9,7 @@
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
       <div class="notice" @click="handleNotice">公告</div>
-      <img src="/curriculum.github.io/xiada.png" class="logo" />
+      <img src="/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
     <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">
@@ -285,7 +285,8 @@ export default {
         // 从接口获取数据
         const reqData = {
           username: "17720241156017",
-          password: "WEcan5798045.."
+          password: "WEcan5798045..",
+          semester: "20242"
         }
         const { data } = await request.post('/timetable',reqData)
         data.map(v=>{
