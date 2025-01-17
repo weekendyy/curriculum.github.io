@@ -9,6 +9,7 @@
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
       <!-- <div class="notice" @click="handleNotice">公告</div> -->
+      <div class="update" @click="()=>$refs.loginRef.showLogin = true">更新</div>
       <img src="/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
@@ -128,7 +129,7 @@
         </div>
       </div>
     </div>
-    <LoginComp @updateData="loginAndGetdata" />
+    <LoginComp ref="loginRef" @updateData="loginAndGetdata" />
   </div>
 </template>
 
@@ -440,6 +441,19 @@ export default {
       box-shadow: 0 0 5px #d6d3cd;
       z-index: 10;
       filter: grayscale(100%);
+    }
+    .update {
+      line-height: 2;
+      font-size: 14px;
+      padding: 0 5px;
+      border-radius: 5px;
+      background-color: #fac863;
+      color: #fff;
+      position: absolute;
+      right: 20px;
+      top: 9px;
+      box-shadow: 0 0 5px #d6d3cd;
+      z-index: 10;
     }
     .logo {
       position: absolute;

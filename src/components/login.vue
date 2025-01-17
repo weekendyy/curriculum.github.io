@@ -1,5 +1,6 @@
 <template>
   <div :class="`login-box-outer ${showLogin?'show-login-box-outer':''}`">
+    <van-icon name="close" class="close-icon" @click="showLogin=false" />
     <div :class="`login-box`">
       <img src="../images/classlogo.jpg" :class="`classlogo ${showLogin?'show-classlogo':''}`" />
       <h2>LOGIN</h2>
@@ -29,15 +30,34 @@
 
 import request from "../utils/request"
 import { weekOption } from "../utils/const"
+import CryptoJS from 'crypto-js';
 export default {
   name: 'LoginComponent',
   data() {
     return {
       showLogin: false,
-      password: "WEcan5798045..",
-      user: "17720241156017",
+      password: "",
+      user: "",
       weekOption: weekOption,
-      submiting: false
+      submiting: false,
+      // 数据加解密
+      encrypted: '',
+      decrypted: '',
+      secretKey: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoweekendyyas#$GGVpqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=', // 密钥，应保密且随机
+    }
+  },
+  watch: {
+    showLogin(newval){
+      if(newval){
+        const user = localStorage.getItem("user")
+        const password = localStorage.getItem("password")
+        if(user){
+          this.user = this.decrypt(user)
+        }
+        if(password){
+          this.password = this.decrypt(password)
+        }
+      }
     }
   },
   methods: {
@@ -79,6 +99,10 @@ export default {
       })
       this.submiting = false
       this.showLogin = false
+      // 存储data到本地缓存
+      localStorage.setItem('table_data', JSON.stringify(this.weekOption));
+      localStorage.setItem('user', this.encrypt(this.user));
+      localStorage.setItem('password', this.encrypt(this.user));
       this.$emit("updateData",this.weekOption)
     },
     getWeeks(data){
@@ -103,11 +127,24 @@ export default {
       let newStr = str.slice(0, length - 2) + ':' + str.slice(length - 2); 
       return newStr
     },
+    // 加密数据
+    encrypt(data) {
+      return CryptoJS.AES.encrypt(data, this.secretKey).toString();
+    },
+    // 解密数据
+    decrypt(encryptedData) {
+      const bytes = CryptoJS.AES.decrypt(encryptedData, this.secretKey);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    }
   },
   created(){
-    setTimeout(() => {
+    let localData = localStorage.getItem("table_data")
+    if(localData && JSON.parse(localData)){
+      this.weekOption = JSON.parse(localData)
+      this.$emit("updateData",this.weekOption)
+    }else{
       this.showLogin = true;
-    }, 100);
+    }
   }
 }
 </script>
@@ -127,6 +164,13 @@ export default {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
+}
+.close-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  color: rgba(0,0,0,0.3);
 }
 .show-login-box-outer {
   opacity: 1;
