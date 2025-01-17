@@ -8,12 +8,11 @@
       </van-dropdown-menu>
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
-      <div class="notice" @click="handleNotice">公告</div>
+      <!-- <div class="notice" @click="handleNotice">公告</div> -->
       <img src="/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
     <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">
-      <div class="depart-line"></div>
       <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
         <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
           <span class="week-text">{{ week }}</span>
@@ -106,16 +105,16 @@
       </van-form>
     </van-dialog>
     <!-- 其他 -->
-     <van-dialog v-model="showInfo" title="其他信息" class="other-info-dialog">
+     <!-- <van-dialog v-model="showInfo" title="其他信息" class="other-info-dialog">
       <div v-for="(item,index) in tableConfig.dayTime" :key="index" class="other-info-item">
         <span>{{ item.name }}</span>
         <span>{{ item.duration }}</span>
       </div>
-    </van-dialog>
+    </van-dialog> -->
     <!-- 底部按钮 -->
     <div class="buttom-buttons">
       <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
-        <van-icon class="info-button" @click="showInfo = true" name="info" />
+        <dogRollover />
       <van-icon :class="`prev ${weekIndex >= scheduleConfig.totalWeeks-1 ? 'disabled':''}`" @click="()=>weekIndex < scheduleConfig.totalWeeks-1 && handleDropdownItem(weekIndex + 1)" name="arrow" />
     </div>
     <!-- 公告内容 -->
@@ -129,19 +128,23 @@
         </div>
       </div>
     </div>
+    <LoginComp @updateData="loginAndGetdata" />
   </div>
 </template>
 
 <script>
 import moment from "moment"
-import request from "../utils/request"
 import { weekOption, tableConfig, importantEvent } from "../utils/const"
 import { scheduleConfig } from '../config/schedule.js' 
+import LoginComp from "./login.vue"
+import dogRollover from "./dog-rollover.vue"
 // import PdfViewer from "./pdfViewer.vue"
 
 export default {
   name: 'SchoolTable',
   components: {
+    LoginComp,
+    dogRollover
     // PdfViewer
   },
   props: {
@@ -223,23 +226,6 @@ export default {
       return
       // this.showNotice = !this.showNotice
     },
-    getWeeks(data){
-      let weeks = data.replace(/[^\d-,]/g,"").split(",")
-      weeks = weeks.map(v=>{
-        if(v.includes("-")){
-          let start = v.split("-")[0]
-          let end = v.split("-")[1]
-          let numbers = [];  
-          for (let i = Number(start); i <= end; i++) {  
-              numbers.push(i);  
-          } 
-          return numbers
-        }else{
-          return Number(v)
-        }
-      })
-      return weeks.flat()
-    },
     theSameCourse(course1,course2){
       if(course1.dayIndex !== course2.dayIndex) return false
       if(course1.address !== course2.address) return false
@@ -247,11 +233,6 @@ export default {
       if(course1.teacher !== course2.teacher) return false
       if(course1.KCDM !== course2.KCDM) return false
       return true
-    },
-    parseTime(str){
-      str = String(str)
-      let newStr = str.slice(0, length - 2) + ':' + str.slice(length - 2); 
-      return newStr
     },
     mergeTime(timeList){
       const simpleForm = {
@@ -268,47 +249,14 @@ export default {
       }
       return timeList
     },
+    loginAndGetdata(weekOption){
+      this.weekOption = weekOption
+      this.initData()
+    },
     async initData(){
       this.loading = true
       this.$loading.show()
-      console.log(this.weekOption)
       try {
-        // 清除weekOption数据
-        this.weekOption.forEach(v=>{
-          if(v.course) {
-            v.course = v.course.filter(v=> !!v.other)
-          }else{
-            v.course = []
-          }
-        })
-        
-        // 从接口获取数据
-        const reqData = {
-          username: "17720241156017",
-          password: "WEcan5798045..",
-          semester: "20242"
-        }
-        const { data } = await request.post('/timetable',reqData)
-        data.map(v=>{
-          const weeks = this.getWeeks(v.ZCMC)
-          const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
-          const item = {
-            dayIndex: v.XQ === 7 ? 0 : v.XQ,
-            address: v.JASMC,
-            courseName: v.KCMC,
-            teacher: v.JSXM,
-            remark: v.KBBZ,
-            time: [`第${v.KSJCDM}节 ${duration}`],
-            duration,
-            weeks,
-            courseIndex: v.KSJCDM,
-            KCDM: v.KCDM
-          }
-          console.log(weeks)
-          weeks.forEach(w=>{
-            this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
-          })
-        })
         // 合并课程
         this.weekOption.forEach((v,idx)=>{
           const courses = []
@@ -426,7 +374,6 @@ export default {
     },
   },
   async created(){
-    await this.initData()
     this.initWeekDate()
     // 判断是否显示今天按钮
     const today = moment()
@@ -449,6 +396,8 @@ export default {
 .SchoolTable {
   padding-top: 48px;
   padding-bottom: 90px;
+  box-sizing: border-box;
+  height: 100%;
   /deep/.van-dropdown-menu__title {
     font-size: 17px;
     font-weight: 600;
@@ -528,6 +477,7 @@ export default {
   }
   .table-box {
     width: 100%;
+    height: 100%;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -675,6 +625,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
+    height: 90px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -683,6 +634,7 @@ export default {
     z-index: 100;
     background: #fff;
     box-sizing: border-box;
+    background: linear-gradient(to left top, rgba(243, 210, 143,0.2),rgba(243, 210, 143,0.5));
     .info-button{
       width: 30px;
       height: 30px;

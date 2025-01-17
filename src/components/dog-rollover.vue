@@ -1,0 +1,165 @@
+<template>
+  <div class="toggle dog-rollover">
+    <input id="doggo" type="checkbox"/>
+    <label class="toggle-item" for="doggo">
+      <div class="dog">
+        <div class="ear"></div>
+        <div class="ear right"></div>
+        <div class="face">
+          <div class="eyes"></div>
+          <div class="mouth"></div>
+        </div>
+      </div>
+    </label>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DogRollover',
+  data() {
+    return {
+    }
+  },
+  methods: {
+    
+  }
+}
+</script>
+
+<style scoped>
+.toggle {
+  position: relative;
+  display: inline-block;
+  zoom: 0.7;
+}
+
+label.toggle-item {
+  width: 7em;
+  height: 3em;
+  display: inline-block;
+  border-radius: 50px;
+  position: relative;
+  transition: all 0.3s ease;
+  transform-origin: 20% center;
+  cursor: pointer;
+}
+label.toggle-item:before {
+  display: block;
+  transition: all 0.2s ease;
+  width: 2.3em;
+  height: 2.3em;
+  top: 0.25em;
+  left: 0.25em;
+  border-radius: 2em;
+  border: 2px solid #88cf8f;
+  transition: 0.3s ease;
+}
+
+.dog-rollover label:before {
+  content: none;
+}
+.dog-rollover label .dog {
+  display: inline-block;
+  position: absolute;
+  width: 2.5em;
+  height: 2.5em;
+  top: 0.25em;
+  left: 0.2em;
+  transition: 0.6s ease;
+}
+.dog-rollover label .eyes {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #222;
+  border-radius: 50%;
+  transform: translate(8px, 14px);
+  box-shadow: 16px 0 0 #222, 22px -4px 0 12px #e4ac04;
+}
+.dog-rollover label .ear {
+  width: 18px;
+  height: 20px;
+  position: absolute;
+  left: -4px;
+  bottom: 80%;
+  background: #f9bb00;
+  margin-bottom: -5px;
+  border-radius: 50% 50% 0 0/100% 100% 0 0;
+  box-shadow: inset 4px 0 0 0px #ffffff, inset -4px 0 0 0px #ffffff;
+  transform: rotate(-40deg);
+}
+.dog-rollover label .ear.right {
+  transform: rotate(60deg) scaleX(-1);
+  left: auto;
+  transform-origin: center bottom;
+  transition: 0.4s ease-in-out;
+  right: 0px;
+}
+.dog-rollover label .face {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  position: absolute;
+  background: #fff;
+  z-index: 8;
+}
+.dog-rollover label .mouth {
+  position: absolute;
+  background: #222;
+  width: 14px;
+  height: 7px;
+  left: 50%;
+  margin-left: -7px;
+  bottom: 12px;
+  border-radius: 2px 2px 20px 20px;
+  bottom: 8px;
+  transform: scale(0);
+  transition: 0.1s ease;
+}
+.dog-rollover label .mouth:before {
+  width: 8px;
+  height: 8px;
+  background: #ec788d;
+  border-radius: 0 0 50% 50%;
+  transform: translate(3px, 5px);
+}
+.dog-rollover label:before {
+  border-color: white;
+  background: white;
+}
+
+#doggo {
+  opacity: 0;
+}
+#doggo:checked ~ .cup {
+  animation: 0.2s linear cup 1s forwards;
+}
+#doggo:checked + label .dog {
+  left: 68px;
+  transform: rotate(360deg);
+}
+#doggo:checked + label .mouth {
+  transform: scale(1);
+  transition-delay: 0.7s;
+}
+#doggo:checked + label .ear.right {
+  transform: scaleX(-1) rotate(-35deg);
+  transition-delay: 0.6s;
+}
+@keyframes cup {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: rotate(75deg) translate(10px, 15px);
+  }
+  90% {
+    transform: rotate(70deg) translate(10px, 15px);
+  }
+  100% {
+    transform: rotate(75deg) translate(10px, 15px);
+  }
+}
+</style>
