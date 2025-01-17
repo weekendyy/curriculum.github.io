@@ -10,7 +10,7 @@
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
       <!-- <div class="notice" @click="handleNotice">公告</div> -->
       <div class="update" @click="()=>$refs.loginRef.showDialog()">更新</div>
-      <img src="/xiada.png" class="logo" />
+      <img src="../images/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
     <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">

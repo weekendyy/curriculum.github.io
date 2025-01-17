@@ -66,7 +66,7 @@ export default {
       this.showLogin = true;
       this.closeIconVisible = true
     },
-    async handleSubmit(){
+    handleSubmit(){
       if(!this.user.trim()){
         this.$toast("请输入学号")
         return
@@ -82,33 +82,40 @@ export default {
         semester: "20242"
       }
       this.submiting = true
-      const { data } = await request.post('/timetable',reqData)
-      data.map(v=>{
-        const weeks = this.getWeeks(v.ZCMC)
-        const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
-        const item = {
-          dayIndex: v.XQ === 7 ? 0 : v.XQ,
-          address: v.JASMC,
-          courseName: v.KCMC,
-          teacher: v.JSXM,
-          remark: v.KBBZ,
-          time: [`第${v.KSJCDM}节 ${duration}`],
-          duration,
-          weeks,
-          courseIndex: v.KSJCDM,
-          KCDM: v.KCDM
-        }
-        weeks.forEach(w=>{
-          this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
+      request.post('/timetable',reqData).then(res=>{
+        const { data, code } = res
+        console.log(code)
+        data.map(v=>{
+          const weeks = this.getWeeks(v.ZCMC)
+          const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
+          const item = {
+            dayIndex: v.XQ === 7 ? 0 : v.XQ,
+            address: v.JASMC,
+            courseName: v.KCMC,
+            teacher: v.JSXM,
+            remark: v.KBBZ,
+            time: [`第${v.KSJCDM}节 ${duration}`],
+            duration,
+            weeks,
+            courseIndex: v.KSJCDM,
+            KCDM: v.KCDM
+          }
+          weeks.forEach(w=>{
+            this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
+          })
         })
+        this.submiting = false
+        this.showLogin = false
+        // 存储data到本地缓存
+        localStorage.setItem('table_data', JSON.stringify(this.weekOption));
+        localStorage.setItem('user', this.encrypt(this.user));
+        localStorage.setItem('password', this.encrypt(this.user));
+        this.$emit("updateData",this.weekOption)
+      }).catch(error=>{
+        console.log(error)
+        this.submiting = false
+        this.$toast(error.message || "登录出错")
       })
-      this.submiting = false
-      this.showLogin = false
-      // 存储data到本地缓存
-      localStorage.setItem('table_data', JSON.stringify(this.weekOption));
-      localStorage.setItem('user', this.encrypt(this.user));
-      localStorage.setItem('password', this.encrypt(this.user));
-      this.$emit("updateData",this.weekOption)
     },
     getWeeks(data){
       let weeks = data.replace(/[^\d-,]/g,"").split(",")
@@ -214,7 +221,7 @@ export default {
   width: 80%;
   max-width: 400px;
   padding: 40px;
-  padding-top: 70px;
+  padding-top: 60px;
   transform: translate(-50%, -40%);
   box-sizing: border-box;
   border-radius: 10px;
