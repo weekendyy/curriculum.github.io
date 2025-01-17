@@ -1,6 +1,6 @@
 <template>
   <div :class="`login-box-outer ${showLogin?'show-login-box-outer':''}`">
-    <van-icon name="close" class="close-icon" @click="showLogin=false" />
+    <van-icon name="close" class="close-icon" v-if="closeIconVisible" @click="showLogin=false" />
     <div :class="`login-box`">
       <img src="../images/classlogo.jpg" :class="`classlogo ${showLogin?'show-classlogo':''}`" />
       <h2>LOGIN</h2>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       showLogin: false,
+      closeIconVisible: true,
       password: "",
       user: "",
       weekOption: weekOption,
@@ -61,6 +62,10 @@ export default {
     }
   },
   methods: {
+    showDialog(){
+      this.showLogin = true;
+      this.closeIconVisible = true
+    },
     async handleSubmit(){
       if(!this.user.trim()){
         this.$toast("请输入学号")
@@ -144,6 +149,7 @@ export default {
       this.$emit("updateData",this.weekOption)
     }else{
       this.showLogin = true;
+      this.closeIconVisible = false
     }
   }
 }
