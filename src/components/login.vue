@@ -28,9 +28,10 @@
 
 <script>
 
-import request from "../utils/request"
+// import request from "../utils/request"
 import { weekOption } from "../utils/const"
 import CryptoJS from 'crypto-js';
+import userData from "../config/user_table_data"
 export default {
   name: 'LoginComponent',
   data() {
@@ -67,55 +68,57 @@ export default {
       this.closeIconVisible = true
     },
     handleSubmit(){
-      if(!this.user.trim()){
-        this.$toast("请输入学号")
-        return
-      }
-      if(!this.password.trim()){
-        this.$toast("请输入密码")
-        return
-      }
+      // if(!this.user.trim()){
+      //   this.$toast("请输入学号")
+      //   return
+      // }
+      // if(!this.password.trim()){
+      //   this.$toast("请输入密码")
+      //   return
+      // }
       // 从接口获取数据
-      const reqData = {
-        username: this.user,
-        password: this.password,
-        semester: "20242"
-      }
-      this.submiting = true
-      request.post('/timetable',reqData).then(res=>{
-        const { data, code } = res
-        console.log(code)
-        data.map(v=>{
-          const weeks = this.getWeeks(v.ZCMC)
-          const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
-          const item = {
-            dayIndex: v.XQ === 7 ? 0 : v.XQ,
-            address: v.JASMC,
-            courseName: v.KCMC,
-            teacher: v.JSXM,
-            remark: v.KBBZ,
-            time: [`第${v.KSJCDM}节 ${duration}`],
-            duration,
-            weeks,
-            courseIndex: v.KSJCDM,
-            KCDM: v.KCDM
-          }
-          weeks.forEach(w=>{
-            this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
-          })
+      // const reqData = {
+      //   username: this.user,
+      //   password: this.password,
+      //   semester: "20242"
+      // }
+      // this.submiting = true
+      userData.map(v=>{
+        const weeks = this.getWeeks(v.ZCMC)
+        const duration = `${this.parseTime(v.KSSJ)} - ${this.parseTime(v.JSSJ)}`
+        const item = {
+          dayIndex: v.XQ === 7 ? 0 : v.XQ,
+          address: v.JASMC,
+          courseName: v.KCMC,
+          teacher: v.JSXM,
+          remark: v.KBBZ,
+          time: [`第${v.KSJCDM}节 ${duration}`],
+          duration,
+          weeks,
+          courseIndex: v.KSJCDM,
+          KCDM: v.KCDM,
+          hidden: false
+        }
+        weeks.forEach(w=>{
+          this.weekOption[w-1].course.unshift(JSON.parse(JSON.stringify(item)))
         })
-        this.submiting = false
-        this.showLogin = false
-        // 存储data到本地缓存
-        localStorage.setItem('table_data', JSON.stringify(this.weekOption));
-        localStorage.setItem('user', this.encrypt(this.user));
-        localStorage.setItem('password', this.encrypt(this.user));
-        this.$emit("updateData",this.weekOption)
-      }).catch(error=>{
-        console.log(error)
-        this.submiting = false
-        this.$toast(error.message || "登录出错")
       })
+      this.submiting = false
+      this.showLogin = false
+      // 存储data到本地缓存
+      localStorage.setItem('table_data', JSON.stringify(this.weekOption));
+      localStorage.setItem('user', this.encrypt(this.user));
+      localStorage.setItem('password', this.encrypt(this.user));
+      this.$emit("updateData",this.weekOption)
+      return
+      // request.post('/timetable',reqData).then(res=>{
+      //   const { data, code } = res
+      //   console.log(code)
+      // }).catch(error=>{
+      //   console.log(error)
+      //   this.submiting = false
+      //   this.$toast(error.message || "登录出错")
+      // })
     },
     getWeeks(data){
       let weeks = data.replace(/[^\d-,]/g,"").split(",")
@@ -150,14 +153,16 @@ export default {
     }
   },
   created(){
-    let localData = localStorage.getItem("table_data")
-    if(localData && JSON.parse(localData)){
-      this.weekOption = JSON.parse(localData)
-      this.$emit("updateData",this.weekOption)
-    }else{
-      this.showLogin = true;
-      this.closeIconVisible = false
-    }
+    // let localData = localStorage.getItem("table_data")
+    // if(localData && JSON.parse(localData)){
+    //   this.weekOption = JSON.parse(localData)
+    //   this.$emit("updateData",this.weekOption)
+    // }else{
+    //   this.showLogin = true;
+    //   this.closeIconVisible = false
+    // }
+
+    this.handleSubmit()
   }
 }
 </script>

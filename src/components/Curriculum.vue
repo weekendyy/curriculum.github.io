@@ -9,7 +9,26 @@
       <!-- 今天 -->
       <div class="today" v-if="showToday" @click="handleToday">今天</div>
       <!-- <div class="notice" @click="handleNotice">公告</div> -->
-      <div class="update" @click="()=>$refs.loginRef.showDialog()">更新</div>
+      <!-- <div class="update" @click="()=>$refs.loginRef.showDialog()">更新</div> -->
+      <van-dropdown-menu class="course-select-css">
+        <van-dropdown-item ref="dropdownItem" title="课程">
+          <van-checkbox-group v-model="selectedValues">
+            <van-cell-group>
+              <van-cell
+                v-for="(option, index) in courseOptions"
+                :key="index"
+                :title="option.text"
+                clickable
+                @click="toggleCheckbox(option.value)"
+              >
+                <template #right-icon>
+                  <van-checkbox :name="option.value" ref="checkboxes" />
+                </template>
+              </van-cell>
+            </van-cell-group>
+          </van-checkbox-group>
+        </van-dropdown-item>
+      </van-dropdown-menu>
       <img src="../images/xiada.png" class="logo" />
     </div>
     <!-- 课程日历 -->
@@ -23,7 +42,7 @@
           <template v-if="currentWeekInfo.course">
             <template v-for="(item,idx) in currentWeekInfo.course">
               <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
-                <div v-if="item.dayIndex === index" :class="`class-card ${item.other ? 'other-bg':''}`" @click="cardDetail(item)">
+                <div v-if="item.dayIndex === index && !item.hidden" :class="`class-card ${item.other ? 'other-bg':''}`" @click="cardDetail(item)">
                   <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
                   <div class="info-item" v-if="item.other">
                     <van-icon :name="item.icon || 'star'" />
@@ -173,7 +192,17 @@ export default {
         teacher: "",
         time: "",
         other: ""
-      }
+      },
+      selectedValues: [],
+      courseOptions: [
+        { text: '自然辩证法', value: '14005' },
+        { text: '采购管理', value: '14973' },
+        { text: '项目风险管理', value: '14982' },
+        { text: '互联网与新媒体营销', value: '16608' },
+        { text: '项目管理信息系统（ME）', value: '17537' },
+        { text: '工程管理导论', value: 'G10300700400004' },
+        { text: '系统运作管理', value: '14020' },
+      ],
     }
   },
   computed: {
@@ -189,6 +218,36 @@ export default {
     }
   },
   methods: {
+    initSelectedValues(){
+      const selectedValues = localStorage.getItem("selected_courses")
+      if(selectedValues){
+        this.selectedValues = JSON.parse(selectedValues)
+      }else{
+        this.selectedValues = this.courseOptions.map(v=>v.value)
+      }
+    },
+    toggleCheckbox(value){
+      // 切换选中状态
+      const index = this.selectedValues.indexOf(value);
+      if (index === -1) {
+        this.selectedValues.push(value);
+      } else {
+        this.selectedValues.splice(index, 1);
+      }
+      this.updateTabledata()
+    },
+    updateTabledata(){  // 根据选中的课程展示
+      localStorage.setItem("selected_courses",JSON.stringify(this.selectedValues))
+      this.weekOption.forEach(week=>{
+        week.course.forEach(course=>{
+          if(!this.selectedValues.includes(course.KCDM)){
+            course.hidden = true
+          }else{
+            course.hidden = false 
+          }
+        })
+      })
+    },
     initWeekDate(){
       this.tableConfig.weekDate = []
       const startDate = this.currentWeekInfo.startDate
@@ -376,6 +435,7 @@ export default {
   },
   async created(){
     this.initWeekDate()
+    this.initSelectedValues()
     // 判断是否显示今天按钮
     const today = moment()
     const startDate = moment(scheduleConfig.startDate)
@@ -481,6 +541,15 @@ export default {
         text-align: left;
       }
     }
+    .course-select-css {
+      width: 80px;
+      position: fixed;
+      right: 11px;
+      top: 0;
+      /deep/.van-dropdown-menu__bar {
+        box-shadow: none;
+      }
+    }
     .title-top {
       line-height: 35px;
       font-size: 14px;
@@ -499,6 +568,7 @@ export default {
     border-bottom: 1px solid #f5f3f3;
     box-sizing: border-box;
     border-top: 1px solid #fac863;
+    transition: 0.3s;
     .depart-line{
       width: 1px;
       height: 100%;
@@ -613,7 +683,7 @@ export default {
     }
   }
   .animation-table {
-    animation: pageturning 0.1s ease;
+    animation: pageturning 0.3s ease;
   }
   .addform {
     margin: 30px 0;
@@ -746,10 +816,13 @@ export default {
 
 @keyframes pageturning {
   0% {
-    filter: blur(0);
+    background: #fff;
+  }
+  50% {
+    background: rgba(238, 237, 163, 0.1);
   }
   100% {
-    filter: blur(3px);
+    background: #fff;
   }
 }
 </style>

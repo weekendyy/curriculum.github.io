@@ -3,7 +3,7 @@ import App from './App.vue'
 import Loading from './plugins/loading'
 
 Vue.use(Loading)
-import { Button, Toast, Dialog, Cell, CellGroup, DropdownMenu, DropdownItem, Icon, Form, Field } from 'vant';
+import { Button, Toast, Dialog, Cell, CellGroup, DropdownMenu, DropdownItem, Icon, Form, Field, checkbox, checkboxGroup } from 'vant';
 
 Vue.use(Button);
 Vue.use(Icon);
@@ -15,6 +15,8 @@ Vue.use(Dialog);
 Vue.use(Form);
 Vue.use(Field);
 Vue.use(Toast);
+Vue.use(checkbox);
+Vue.use(checkboxGroup);
 Vue.config.productionTip = false
 
 new Vue({
