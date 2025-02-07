@@ -3,10 +3,10 @@ import { weekOption } from "./const"
 export const formatDate = (source_data)=>{
   let _weekOption = weekOption
   source_data.map(v=>{
-    const weeks = getWeeks(v.ZCMC)
+    const weeks = getWeeks(v)
     const duration = `${parseTime(v.KSSJ)} - ${parseTime(v.JSSJ)}`
     const item = {
-      dayIndex: v.XQ === 7 ? 0 : v.XQ,
+      dayIndex: v.XQ - 1,
       address: v.JASMC,
       courseName: v.KCMC,
       teacher: v.JSXM,
@@ -63,18 +63,23 @@ export const formatDate = (source_data)=>{
 }
 
 const getWeeks = (data)=>{
-  let weeks = data.replace(/[^\d-,]/g,"").split(",")
+  const { ZCMC, XQ } = data
+  let weeks = ZCMC.replace(/[^\d-,]/g,"").split(",")
   weeks = weeks.map(v=>{
     if(v.includes("-")){
       let start = v.split("-")[0]
       let end = v.split("-")[1]
       let numbers = [];  
-      for (let i = Number(start); i <= end; i++) {  
-          numbers.push(i);  
+      for (let i = Number(start); i <= end; i++) { 
+        if(XQ === 7) numbers.push(i - 1)
+        else numbers.push(i)
+            
       } 
       return numbers
     }else{
-      return Number(v)
+      if(XQ === 7) return Number(v - 1)
+      else return Number(v)
+      
     }
   })
   return weeks.flat()

@@ -31,7 +31,7 @@ const getWeekDates = (startDate = scheduleConfig.startDate, weeks = scheduleConf
 export const weekOption = getWeekDates()  // 下拉菜单
 
 export const tableConfig = {  // 主表格配置
-  weekDay: ["周天","周一","周二","周三","周四","周五","周六"],
+  weekDay: ["周一","周二","周三","周四","周五","周六","周天"],
   weekDate: [],
   dayTime: [
     {
