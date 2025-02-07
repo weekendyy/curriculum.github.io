@@ -1,5 +1,5 @@
 <template>
-  <div class="toggle dog-rollover">
+  <div class="toggle dog-rollover" @click="$emit('change')">
     <input id="doggo" type="checkbox"/>
     <label class="toggle-item" for="doggo">
       <div class="dog">
@@ -35,7 +35,7 @@ export default {
 }
 
 label.toggle-item {
-  width: 7em;
+  width: 3em;
   height: 3em;
   display: inline-block;
   border-radius: 50px;
@@ -133,11 +133,7 @@ label.toggle-item:before {
 #doggo {
   opacity: 0;
 }
-#doggo:checked ~ .cup {
-  animation: 0.2s linear cup 1s forwards;
-}
 #doggo:checked + label .dog {
-  left: 68px;
   transform: rotate(360deg);
 }
 #doggo:checked + label .mouth {
@@ -147,19 +143,5 @@ label.toggle-item:before {
 #doggo:checked + label .ear.right {
   transform: scaleX(-1) rotate(-35deg);
   transition-delay: 0.6s;
-}
-@keyframes cup {
-  0% {
-    transform: none;
-  }
-  50% {
-    transform: rotate(75deg) translate(10px, 15px);
-  }
-  90% {
-    transform: rotate(70deg) translate(10px, 15px);
-  }
-  100% {
-    transform: rotate(75deg) translate(10px, 15px);
-  }
 }
 </style>

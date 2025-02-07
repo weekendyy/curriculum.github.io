@@ -25,7 +25,6 @@ const getWeekDates = (startDate = scheduleConfig.startDate, weeks = scheduleConf
       course: []
     })
   }
-  
   return result
 }
 

@@ -7,7 +7,7 @@
         </van-dropdown-item>
       </van-dropdown-menu>
       <!-- 今天 -->
-      <div class="today" v-if="showToday" @click="handleToday">今天</div>
+      <!-- <div class="today"  @click="handleToday">今天</div> -->
       <!-- <div class="notice" @click="handleNotice">公告</div> -->
       <!-- <div class="update" @click="()=>$refs.loginRef.showDialog()">更新</div> -->
       <van-dropdown-menu class="course-select-css">
@@ -134,7 +134,8 @@
     <!-- 底部按钮 -->
     <div class="buttom-buttons">
       <van-icon :class="`next ${weekIndex <= 0 ? 'disabled':''}`" @click="()=> weekIndex > 0 && handleDropdownItem(weekIndex - 1)" name="arrow-left" />
-        <dogRollover />
+        <!-- <dogRollover @change="handleToday" /> -->
+        <div class="today" v-if="showToday"  @click="handleToday">今天</div>
       <van-icon :class="`prev ${weekIndex >= scheduleConfig.totalWeeks-1 ? 'disabled':''}`" @click="()=>weekIndex < scheduleConfig.totalWeeks-1 && handleDropdownItem(weekIndex + 1)" name="arrow" />
     </div>
     <!-- 公告内容 -->
@@ -148,24 +149,62 @@
         </div>
       </div>
     </div>
-    <LoginComp ref="loginRef" @updateData="loginAndGetdata" />
+    <div :class="`card-detail ${showDetail?'show-card-detail':''}`" @click="showDetail = false">
+      <div :class="`class-card detail-card ${showDetail ? 'show-class-card-detail':''}`" @click.stop="()=>{}">
+        <div class="info-item" v-if="detailCardInfo.other">
+          <van-icon :name="detailCardInfo.icon || 'star'" />
+          <p>{{ detailCardInfo.other }}</p>
+        </div>
+        <div class="info-item" v-if="detailCardInfo.courseName">
+          <van-icon name="notes" />
+          <p>课程：{{ detailCardInfo.courseName }}</p>
+        </div>
+        <div class="info-item" v-if="detailCardInfo.address">
+          <van-icon name="location" />
+          <p>地点：{{ detailCardInfo.address }}</p>
+        </div>
+        <div class="info-item" v-if="detailCardInfo.teacher">
+          <van-icon name="manager" />
+          <p>老师：{{ detailCardInfo.teacher }}</p>
+        </div>
+        <div class="info-item" style="align-items: flex-start;" v-if="detailCardInfo.time">
+          <van-icon name="clock" style="margin-top: 9px;" />
+          <div class="clock-item"><p>时间：</p>
+            <div >
+              <p style="text-align: left;" v-for="time in detailCardInfo.time" :key="time">{{time}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="info-item" style="align-items: flex-start;" v-if="detailCardInfo.content">
+          <van-icon name="description" style="margin-top: 3px;" />
+          <div class="clock-item"><p class="clock-item-title">内容：</p>
+            <div >
+              <p class="clock-item-content" style="text-align: left;" v-for="content in detailCardInfo.content" :key="content">{{content}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="info-item" v-if="detailCardInfo.remark">
+          <van-icon name="manager" />
+          <p>备注：{{ detailCardInfo.remark }}</p>
+        </div>
+        
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import moment from "moment"
-import { weekOption, tableConfig, importantEvent } from "../utils/const"
+import { tableConfig, importantEvent } from "../utils/const"
 import { scheduleConfig } from '../config/schedule.js' 
-import LoginComp from "./login.vue"
-import dogRollover from "./dog-rollover.vue"
-// import PdfViewer from "./pdfViewer.vue"
+// import dogRollover from "./dog-rollover.vue"
+import { formatDate } from "../utils/tableDataUtils"
+import tableData from "../config/user_table_data"
 
 export default {
   name: 'SchoolTable',
   components: {
-    LoginComp,
-    dogRollover
-    // PdfViewer
+    // dogRollover
   },
   props: {
   },
@@ -182,7 +221,7 @@ export default {
       weekIndex: 0,
       weekDayIndex: null,
       title: "第1周",
-      weekOption: weekOption,
+      weekOption: [],
       tableConfig: tableConfig,
       importantEvent: importantEvent,
       addParams: {
@@ -195,19 +234,22 @@ export default {
       },
       selectedValues: [],
       courseOptions: [
-        { text: '自然辩证法', value: '14005' },
-        { text: '采购管理', value: '14973' },
-        { text: '项目风险管理', value: '14982' },
-        { text: '互联网与新媒体营销', value: '16608' },
-        { text: '项目管理信息系统（ME）', value: '17537' },
-        { text: '工程管理导论', value: 'G10300700400004' },
-        { text: '系统运作管理', value: '14020' },
+        { text: '自然辩证法(18学时1学分,公共)---曹志平', value: '14005' },
+        { text: '采购管理(36学时2学分,选修)---缪朝炜', value: '14973' },
+        { text: '项目风险管理(36学时2学分,选修)---林清恋', value: '14982' },
+        { text: '互联网与新媒体营销(36学时2学分,选修)---袁喜娜', value: '16608' },
+        { text: '项目管理信息系统(18学时1学分,选修)---曹慕昆', value: '17537' },
+        { text: '工程管理导论(36学时2学分,选修)---张存禄', value: 'G10300700400004' },
+        { text: '系统运作管理(36学时2学分,选修)---刘震宇', value: '14020' },
       ],
+      detailCardInfo: {},
+      showDetail: false
     }
   },
   computed: {
     currentWeekInfo(){
-      return this.weekOption[this.weekIndex]
+      const cur = this.weekOption[this.weekIndex]
+      return cur ? cur : {}
     },
     currentWeekIndex(){
       if(this.currentWeekInfo.course){
@@ -215,6 +257,12 @@ export default {
       }else{
         return []
       }
+    }
+  },
+  watch: {
+    weekIndex(newVal){
+      if(this.weekOption[newVal])
+      this.initWeekDate()
     }
   },
   methods: {
@@ -251,8 +299,10 @@ export default {
     initWeekDate(){
       this.tableConfig.weekDate = []
       const startDate = this.currentWeekInfo.startDate
-      for(let i = 0; i < 7; i++){
-        this.tableConfig.weekDate.push(moment(startDate).add(i, 'days').format("MM-DD"))
+      if(startDate){
+        for(let i = 0; i < 7; i++){
+          this.tableConfig.weekDate.push(moment(startDate).add(i, 'days').format("MM-DD"))
+        }
       }
     },
     handleDropdownItem(index, toggle){
@@ -269,7 +319,6 @@ export default {
       this.weekIndex = index
       toggle && this.$refs.weekRef.toggle();
       this.weekDayIndex = null
-      this.initWeekDate()
     },
     handleToday(){
       // 计算当前周数
@@ -280,86 +329,10 @@ export default {
       const item = this.weekOption[this.weekIndex]
       this.title = item.title
       this.weekDayIndex = moment().weekday()
-      this.initWeekDate()
     },
     handleNotice(){
       return
       // this.showNotice = !this.showNotice
-    },
-    theSameCourse(course1,course2){
-      if(course1.dayIndex !== course2.dayIndex) return false
-      if(course1.address !== course2.address) return false
-      if(course1.courseName !== course2.courseName) return false
-      if(course1.teacher !== course2.teacher) return false
-      if(course1.KCDM !== course2.KCDM) return false
-      return true
-    },
-    mergeTime(timeList){
-      const simpleForm = {
-        "上午：08:55 - 11:50 三节课": ["第2节 8:55 - 9:40", "第3节 10:10 - 10:55","第4节 11:05 - 11:50"],
-        "下午：14:30 - 17:25  三节课": ["第5节 14:30 - 15:15", "第6节 15:25 - 16:10","第7节 16:40 - 17:25"],
-        "晚上：17:10 - 21:45  三节课": ["第9节 19:10 - 19:55", "第10节 20:05 - 20:50","第11节 21:00 - 21:45"],
-      }
-      for(let key in simpleForm){
-        const toCheck = simpleForm[key]
-        if (toCheck.every(item => timeList.includes(item))) {  
-          timeList = timeList.filter(item => !toCheck.includes(item));
-          timeList.push(key)
-        }
-      }
-      return timeList
-    },
-    loginAndGetdata(weekOption){
-      this.weekOption = weekOption
-      this.initData()
-    },
-    async initData(){
-      this.loading = true
-      this.$loading.show()
-      try {
-        // 合并课程
-        this.weekOption.forEach((v,idx)=>{
-          const courses = []
-          v.course.forEach(c=>{
-            if(courses.length === 0) {
-              courses.push(c)
-            }else{
-              let theSameIndex = -1
-              courses.forEach((item,index)=>{
-                if(this.theSameCourse(item,c)){
-                  theSameIndex = index
-                }
-              })
-              if(theSameIndex === -1) {
-                courses.push(c)
-              }else{
-                courses[theSameIndex].time.push(`第${c.courseIndex}节 ${c.duration}`)
-              }
-            }
-          })
-          this.weekOption[idx].course = courses
-        })
-        // 简化课程时间
-        this.weekOption.forEach(v=>{
-          v.course.forEach(c=>{
-            if(c.time) c.time = this.mergeTime(c.time)
-          })
-        })
-        // 合并本地的日历
-        let addedCourses = localStorage.getItem('localCourses');
-        if(addedCourses){
-          addedCourses = JSON.parse(addedCourses)
-          addedCourses.forEach(v=>{
-            this.weekOption[v.weekIndex].course.push(v)
-          })
-        }
-      } catch (error) {
-        console.error('获取课表数据失败:', error)
-        this.$toast('获取课表数据失败')
-      } finally {
-        this.loading = false
-        this.$loading.hide()
-      }
     },
     closeAddDialog(){
       this.addParams = {}
@@ -375,6 +348,7 @@ export default {
         done();
       }
     },
+    // 确定添加本地日历
     addConfirm(){
       if(!this.addParams.other || !this.addParams.other.trim()){
         this.$toast('主题不能为空');
@@ -398,6 +372,7 @@ export default {
 
       localStorage.setItem('localCourses', JSON.stringify(addedCourses));
     },
+    // 删除本地日历
     closeLocalCourse(item){
       this.$dialog.confirm({
         title: '删除',
@@ -420,22 +395,18 @@ export default {
       });
       
     },
+    // 查看详情
     cardDetail(item){
-      if(!item.click) return
-      const { type } = item
-      switch (type) {
-        case "qualityDevelopment":
-          this.showQD = true
-          break;
-      
-        default:
-          break;
-      }
+      this.detailCardInfo = item
+      this.showDetail = true
     },
   },
   async created(){
+    // 初始化课程内容
+    this.weekOption = formatDate(tableData)
+    // 初始化课程选项
+    this.initSelectedValues() 
     this.initWeekDate()
-    this.initSelectedValues()
     // 判断是否显示今天按钮
     const today = moment()
     const startDate = moment(scheduleConfig.startDate)
@@ -448,12 +419,23 @@ export default {
         other: "今天"
       },)
     }
+    
   },
   
 }
 </script>
 
 <style scoped lang="less">
+.today {
+  line-height: 2;
+  font-size: 14px;
+  padding: 2px 10px;
+  border-radius: 5px;
+  background-color: #fac863;
+  color: #fff;
+  box-shadow: 0 0 5px #d6d3cd;
+  z-index: 10;
+}
 .SchoolTable {
   padding-top: 48px;
   padding-bottom: 90px;
@@ -618,67 +600,90 @@ export default {
         box-sizing: border-box;
         padding: 10px;
         flex-shrink: 0;
-        .class-card {
-          background: linear-gradient(to left top, #fac863,#f3d28f);
-          padding: 7px;
-          border-radius: 8px;
-          box-shadow: 0 0 5px #d6d3cd;
-          margin-right: 20px;
+        
+      }
+    }
+  }
+  .class-card {
+    background: linear-gradient(to left top, #fac863,#f3d28f);
+    padding: 7px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #d6d3cd;
+    margin-right: 20px;
+    flex-shrink: 0;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    .closeIcon {
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      font-size: 16px;
+      color: rgba(0,0,0,0.6);
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+    .info-item {
+      display: flex;
+      align-items: baseline;
+      .van-icon {
+        width: 12px;
+        height: 12px;
+        font-size: 12px;
+        margin-right: 4px;
+        color: #fff;
+        font-weight: lighter;
+      }
+      p{
+        margin: 0;
+        font-size: 12px;
+        line-height: 18px;
+        color: #fff;
+        text-align: left;
+      }
+      .clock-item {
+        display: flex;
+        .clock-item-title {
           flex-shrink: 0;
-          position: relative;
-          max-width: 100%;
-          box-sizing: border-box;
-          .closeIcon {
-            position: absolute;
-            right: -8px;
-            top: -8px;
-            font-size: 16px;
-            color: rgba(0,0,0,0.6);
-          }
-          &:last-child{
-            margin-right: 0;
-          }
-          .info-item {
-            display: flex;
-            align-items: baseline;
-            .van-icon {
-              width: 12px;
-              height: 12px;
-              font-size: 12px;
-              margin-right: 4px;
-              color: #fff;
-              font-weight: lighter;
-            }
-            p{
-              margin: 0;
-              font-size: 12px;
-              line-height: 18px;
-              color: #fff;
-              text-align: left;
-            }
-            .clock-item {
-              display: flex;
-              .clock-item-title {
-                flex-shrink: 0;
-              }
-              .clock-item-content {
-                margin-bottom: 10px;
-                &::before{
-                  content: "";
-                  width: 8px;
-                  height: 8px;
-                  border-radius: 100%;
-                  background-color: #eee3cefb;
-                  display: inline-block;
-                  margin-right: 7px;
-                }
-              }
-            }
+        }
+        .clock-item-content {
+          margin-bottom: 10px;
+          &::before{
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            background-color: #eee3cefb;
+            display: inline-block;
+            margin-right: 7px;
           }
         }
-        .other-bg {
-          background: linear-gradient(to left top, #FF626E, #FFBE71)
-        }
+      }
+    }
+  }
+  .other-bg {
+    background: linear-gradient(to left top, #FF626E, #FFBE71)
+  }
+  .detail-card {
+    width: 90%;
+    margin-bottom: 20%;
+    padding: 15px;
+    transition: 0.3s;
+    transform: translateY(-20px) scale(1);
+    .info-item p{
+      font-size: 16px;
+      line-height: 2;
+    }
+  }
+  .show-class-card-detail {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+    .info-item {
+
+      /deep/.van-icon {
+        font-size: 15px;
+        margin-right: 6px;
       }
     }
   }
@@ -824,5 +829,28 @@ export default {
   100% {
     background: #fff;
   }
+}
+
+
+.card-detail {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  transition: 0.3s;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+  z-index: 111;
+}
+.show-card-detail {
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: blur(2px);
 }
 </style>
