@@ -56,7 +56,7 @@ export const formatDate = (source_data)=>{
   if(addedCourses){
     addedCourses = JSON.parse(addedCourses)
     addedCourses.forEach(v=>{
-      this.weekOption[v.weekIndex].course.push(v)
+      _weekOption[v.weekIndex].course.push(v)
     })
   }
   return _weekOption
@@ -93,7 +93,7 @@ const mergeTime = (timeList)=>{
   const simpleForm = {
     "上午：08:55 - 11:50 三节课": ["第2节 8:55 - 9:40", "第3节 10:10 - 10:55","第4节 11:05 - 11:50"],
     "下午：14:30 - 17:25  三节课": ["第5节 14:30 - 15:15", "第6节 15:25 - 16:10","第7节 16:40 - 17:25"],
-    "晚上：17:10 - 21:45  三节课": ["第9节 19:10 - 19:55", "第10节 20:05 - 20:50","第11节 21:00 - 21:45"],
+    "晚上：19:10 - 21:45  三节课": ["第9节 19:10 - 19:55", "第10节 20:05 - 20:50","第11节 21:00 - 21:45"],
   }
   for(let key in simpleForm){
     const toCheck = simpleForm[key]

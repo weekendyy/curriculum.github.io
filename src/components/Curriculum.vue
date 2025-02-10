@@ -33,12 +33,21 @@
     </div>
     <!-- 课程日历 -->
     <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">
-      <div class="week-day" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
-        <div class="row-line-one" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
+      <div :class="`week-day`" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
+        <div :class="
+          `row-line-one 
+          ${holidays[tableConfig.weekDate[index]] && holidays[tableConfig.weekDate[index]].includes('休')?'holidays-day':''}
+          ${holidays[tableConfig.weekDate[index]] && holidays[tableConfig.weekDate[index]].includes('班')?'work-day':''}
+          `" :style="{'line-height': currentWeekIndex.includes(index) ? '120px': '60px'}" @click="openAddDialog(index)">
           <span class="week-text">{{ week }}</span>
           <span class="week-text date">{{ tableConfig.weekDate[index] }}</span>
+          <span class="week-text holidays">{{ holidays[tableConfig.weekDate[index]] ? holidays[tableConfig.weekDate[index]] : '' }}</span>
         </div>
-        <div class="row-line-two">
+        <div :class="
+          `row-line-two
+          ${holidays[tableConfig.weekDate[index]] && holidays[tableConfig.weekDate[index]].includes('休')?'holidays-day':''}
+          ${holidays[tableConfig.weekDate[index]] && holidays[tableConfig.weekDate[index]].includes('班')?'work-day':''}
+          `">
           <template v-if="currentWeekInfo.course">
             <template v-for="(item,idx) in currentWeekInfo.course">
               <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
@@ -195,7 +204,7 @@
 
 <script>
 import moment from "moment"
-import { tableConfig, importantEvent } from "../utils/const"
+import { tableConfig, importantEvent, holidays } from "../utils/const"
 import { scheduleConfig } from '../config/schedule.js' 
 // import dogRollover from "./dog-rollover.vue"
 import { formatDate } from "../utils/tableDataUtils"
@@ -233,6 +242,7 @@ export default {
         other: ""
       },
       selectedValues: [],
+      holidays: holidays,
       courseOptions: [
         { text: '自然辩证法(18学时1学分,公共)---曹志平', value: '14005' },
         { text: '采购管理(36学时2学分,选修)---缪朝炜', value: '14973' },
@@ -389,6 +399,7 @@ export default {
         const localIdx = addedCourses.findIndex(v=>v.id && v.id === item.id)
         addedCourses.splice(localIdx,1)
         localStorage.setItem('localCourses', JSON.stringify(addedCourses));
+        this.showDetail = false
       })
       .catch(() => {
         // on cancel
@@ -551,6 +562,7 @@ export default {
     box-sizing: border-box;
     border-top: 1px solid #fac863;
     transition: 0.3s;
+    overflow-y: scroll;
     .depart-line{
       width: 1px;
       height: 100%;
@@ -564,13 +576,12 @@ export default {
       position: relative;
       box-sizing: content-box;
       border-bottom: 1px solid #ddd;
-      min-height: 50px;
       .row-line-one {
         position: sticky;
         left: 0;
         top: 0;
         height: 100%;
-        flex: 0 0 50px;
+        flex: 0 0 60px;
         font-size: 14px;
         z-index: 1;
         line-height: 120px;
@@ -585,14 +596,26 @@ export default {
         }
         .date {
           font-size: 11px;
-          margin-top: 5px;
+          margin-top: 4px;
           color: #f8a603;
+        }
+        .holidays {
+          font-size: 9px;
+          margin-top: 4px;
+          color: #f8a603;
+          opacity: 0.5;
         }
       }
       .row-line-two {
         flex: 1;
         border-left: 1px solid #ddd;
-        min-height: 50px;
+        min-height: 57px;
+      }
+      .holidays-day {
+        background-color: #fdf7f4;
+      }
+      .work-day {
+        background-color: rgba(255,164,164,0.4);
       }
       .weekday-row {
         display: flex;
@@ -603,6 +626,7 @@ export default {
         
       }
     }
+    
   }
   .class-card {
     background: linear-gradient(to left top, #fac863,#f3d28f);
