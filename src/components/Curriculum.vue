@@ -52,7 +52,7 @@
             <template v-for="(item,idx) in currentWeekInfo.course">
               <div class="weekday-row" :key="idx" v-if="item.dayIndex === index">
                 <div v-if="item.dayIndex === index && !item.hidden" :class="`class-card ${item.other ? 'other-bg':''}`" @click="cardDetail(item)">
-                  <van-icon name="clear" class="closeIcon" v-if="item.local" @click="closeLocalCourse(item)" />
+                  <van-icon name="clear" class="closeIcon" v-if="item.local" @click.stop="closeLocalCourse(item)" />
                   <div class="info-item" v-if="item.other">
                     <van-icon :name="item.icon || 'star'" />
                     <p>{{ item.other }}</p>
@@ -402,7 +402,7 @@ export default {
         this.showDetail = false
       })
       .catch(() => {
-        // on cancel
+        this.showDetail = false
       });
       
     },
