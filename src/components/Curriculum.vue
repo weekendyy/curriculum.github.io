@@ -33,7 +33,7 @@
     </div>
     <!-- 课程日历 -->
     <div :class="`table-box ${pageChangeLoading?'animation-table':''}`">
-      <div :class="`week-day`" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex === index ? 'rgb(255 249 237)':''}">
+      <div :class="`week-day`" v-for="(week, index) in tableConfig.weekDay" :key="week" :style="{'background-color': weekDayIndex - 1 === index ? 'rgb(255 249 237)':''}">
         <div :class="
           `row-line-one 
           ${holidays[tableConfig.weekDate[index]] && holidays[tableConfig.weekDate[index]].includes('休')?'holidays-day':''}
@@ -426,7 +426,7 @@ export default {
     if(this.showToday){
       this.handleToday()
       this.weekOption[this.weekIndex].course.push({
-        dayIndex: this.weekDayIndex,
+        dayIndex: this.weekDayIndex - 1,
         other: "今天"
       },)
     }
