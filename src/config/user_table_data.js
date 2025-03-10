@@ -1,380 +1,5 @@
 const userData = [
     {
-        "WID": "0c575c10-b368-41de-bcb5-eab4c2b038f9",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 2,
-        "JSJCDM": 2,
-        "KSSJ": 855,
-        "JSSJ": 940,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "ea4a1092-fa3b-4f26-9a81-cf6bf53dc684",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 3,
-        "JSJCDM": 3,
-        "KSSJ": 1010,
-        "JSSJ": 1055,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "d5bdb6eb-bde9-478b-9bfe-885e38ff03cd",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 4,
-        "JSJCDM": 4,
-        "KSSJ": 1105,
-        "JSSJ": 1150,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "009398e6-4935-40c5-afd5-e4a89c0fd572",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 5,
-        "JSJCDM": 5,
-        "KSSJ": 1430,
-        "JSSJ": 1515,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "73e51b64-11a3-4190-8bb9-f017741f9f78",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 6,
-        "JSJCDM": 6,
-        "KSSJ": 1525,
-        "JSSJ": 1610,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "5f859328-2080-4afa-b4bf-2173406bf386",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 7,
-        "JSJCDM": 7,
-        "KSSJ": 1640,
-        "JSSJ": 1725,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "89eb7558-0fa3-4a57-aaa2-3840985cec2a",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 9,
-        "JSJCDM": 9,
-        "KSSJ": 1910,
-        "JSSJ": 1955,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "a32ad5c9-2855-4c93-aae6-1b5be719c95a",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 10,
-        "JSJCDM": 10,
-        "KSSJ": 2005,
-        "JSSJ": 2050,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "b147aa7e-9894-4e2c-b0be-cf18cb6f66e6",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000010000000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 11,
-        "JSJCDM": 11,
-        "KSSJ": 2100,
-        "JSSJ": 2145,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "14周"
-    },
-    {
-        "WID": "87d9eb16-516d-4d15-ad09-74e4c2e629fd",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 2,
-        "JSJCDM": 2,
-        "KSSJ": 855,
-        "JSSJ": 940,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
-        "WID": "46865288-50b1-49e9-8cb7-a31a7428b2c3",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 3,
-        "JSJCDM": 3,
-        "KSSJ": 1010,
-        "JSSJ": 1055,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
-        "WID": "4b0b927b-0f1c-4598-b43a-ac2d71c1342d",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 4,
-        "JSJCDM": 4,
-        "KSSJ": 1105,
-        "JSSJ": 1150,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
-        "WID": "aad6ecf8-c8e7-4e8e-9dae-f1b7c3873892",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 5,
-        "JSJCDM": 5,
-        "KSSJ": 1430,
-        "JSSJ": 1515,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
-        "WID": "629bcf8f-405a-48b7-adc8-7c762d7edf45",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 6,
-        "JSJCDM": 6,
-        "KSSJ": 1525,
-        "JSSJ": 1610,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
-        "WID": "dc0568a8-9d7c-41f5-8f4f-2d64a567e8e7",
-        "XH": "17720241156017",
-        "BJDM": "20242-14005-1735203808086",
-        "JASDM": "101010401",
-        "JASMC": "庄汉水楼（南强二）401",
-        "JASYWMC": "Zhuang Hanshui Building (Nanqiang 2 Building) 401",
-        "JSXM": "曹志平",
-        "JSYWM": null,
-        "ZCBH": "000000000000000100000000000000",
-        "XQ": 6,
-        "JCFADM": "01",
-        "KSJCDM": 7,
-        "JSJCDM": 7,
-        "KSSJ": 1640,
-        "JSSJ": 1725,
-        "SJLY": 1,
-        "BJMC": "01",
-        "KCDM": "14005",
-        "KCMC": "自然辩证法",
-        "KCYWMC": "Dialectics of Nature",
-        "KBBZ": null,
-        "XKRS": 75,
-        "ZCMC": "16周"
-    },
-    {
         "WID": "eb4d4e42-f6b3-45f3-94ef-887343e73f71",
         "XH": "17720241156017",
         "BJDM": "20242-14973-1734932539789",
@@ -546,7 +171,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "7-8周"
     },
     {
@@ -571,7 +196,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "7-8周"
     },
     {
@@ -596,7 +221,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "7-8周"
     },
     {
@@ -621,7 +246,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -646,7 +271,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -671,7 +296,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -696,7 +321,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -721,7 +346,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -746,7 +371,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -771,7 +396,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -796,7 +421,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -821,7 +446,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -846,7 +471,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -871,7 +496,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -896,7 +521,7 @@ const userData = [
         "KCMC": "项目风险管理(ME)",
         "KCYWMC": "Project Risk Management",
         "KBBZ": null,
-        "XKRS": 81,
+        "XKRS": 82,
         "ZCMC": "9-10周"
     },
     {
@@ -921,7 +546,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -946,7 +571,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -971,7 +596,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -996,7 +621,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -1021,7 +646,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -1046,7 +671,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "6-8周"
     },
     {
@@ -1071,7 +696,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1096,7 +721,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1121,7 +746,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1146,7 +771,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1171,7 +796,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1196,7 +821,7 @@ const userData = [
         "KCMC": "互联网与新媒体营销",
         "KCYWMC": "Digital Marketing",
         "KBBZ": null,
-        "XKRS": 90,
+        "XKRS": 89,
         "ZCMC": "7-8周"
     },
     {
@@ -1446,7 +1071,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1471,7 +1096,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1496,7 +1121,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1521,7 +1146,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1546,7 +1171,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1571,7 +1196,7 @@ const userData = [
         "KCMC": "工程管理导论",
         "KCYWMC": "Introduction to Engineering Management",
         "KBBZ": "本课程时间实际为13周至15周及17周至18周周日的2-7节，其中17周和18周为考试周教室待定，因此目前课表仅显示13、14、15周的课",
-        "XKRS": 71,
+        "XKRS": 72,
         "ZCMC": "13-15周"
     },
     {
@@ -1596,7 +1221,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     },
     {
@@ -1621,7 +1246,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     },
     {
@@ -1646,7 +1271,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     },
     {
@@ -1671,7 +1296,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     },
     {
@@ -1696,7 +1321,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     },
     {
@@ -1721,7 +1346,7 @@ const userData = [
         "KCMC": "系统运作管理",
         "KCYWMC": "Operations Management",
         "KBBZ": null,
-        "XKRS": 73,
+        "XKRS": 71,
         "ZCMC": "2-6周"
     }
 ];
