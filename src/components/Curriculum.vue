@@ -244,7 +244,7 @@ export default {
       selectedValues: [],
       holidays: holidays,
       courseOptions: [
-        { text: '自然辩证法(18学时1学分,公共)---曹志平', value: '14005' },
+        { text: '自然辩证法+新中特(18+36学分,公共)---曹志平', value: '14005' },
         { text: '采购管理(36学时2学分,选修)---缪朝炜', value: '14973' },
         { text: '项目风险管理(36学时2学分,选修)---林清恋', value: '14982' },
         { text: '互联网与新媒体营销(36学时2学分,选修)---袁喜娜', value: '16608' },
