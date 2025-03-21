@@ -22,7 +22,7 @@
                 @click="toggleCheckbox(option.value)"
               >
                 <template #right-icon>
-                  <van-checkbox :name="option.value" ref="checkboxes" />
+                  <van-checkbox :name="option.value" :disabled="option.disabled" ref="checkboxes" />
                 </template>
               </van-cell>
             </van-cell-group>
@@ -85,11 +85,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="info-item" v-if="item.remark">
+                  <div class="info-item remark" v-if="item.remark">
                     <van-icon name="manager" />
-                    <p>备注：{{ item.remark }}</p>
+                    <p>备注：
+                      <span class="important">{{ item.remark }}</span>
+                    </p>
                   </div>
-                  
                 </div>
               </div>
             </template>
@@ -192,9 +193,11 @@
             </div>
           </div>
         </div>
-        <div class="info-item" v-if="detailCardInfo.remark">
+        <div class="info-item remark" v-if="detailCardInfo.remark">
           <van-icon name="manager" />
-          <p>备注：{{ detailCardInfo.remark }}</p>
+          <p>备注：
+            <span class="important">{{ detailCardInfo.remark }}</span>
+          </p>
         </div>
         
       </div>
@@ -244,7 +247,7 @@ export default {
       selectedValues: [],
       holidays: holidays,
       courseOptions: [
-        { text: '自然辩证法+新中特(18+36学分,公共)---曹志平', value: '14005' },
+        { text: '自然辩证法+新中特(18+36学分,公共)---曹志平', value: '12656', disabled: true },
         { text: '采购管理(36学时2学分,选修)---缪朝炜', value: '14973' },
         { text: '项目风险管理(36学时2学分,选修)---林清恋', value: '14982' },
         { text: '互联网与新媒体营销(36学时2学分,选修)---袁喜娜', value: '16608' },
@@ -277,14 +280,21 @@ export default {
   },
   methods: {
     initSelectedValues(){
-      const selectedValues = localStorage.getItem("selected_courses")
+      let selectedValues = localStorage.getItem("selected_courses")
       if(selectedValues){
         this.selectedValues = JSON.parse(selectedValues)
       }else{
         this.selectedValues = this.courseOptions.map(v=>v.value)
       }
+
+      if(!this.selectedValues.includes("12656")){
+        this.selectedValues.push("12656")
+        localStorage.setItem("selected_courses",JSON.stringify(this.selectedValues))
+      }
+
     },
     toggleCheckbox(value){
+      if(value === "12656") return 
       // 切换选中状态
       const index = this.selectedValues.indexOf(value);
       if (index === -1) {
@@ -411,10 +421,16 @@ export default {
       this.detailCardInfo = item
       this.showDetail = true
     },
+    addRemark(){
+      // 添加备注
+      console.log(this.weekOption)
+      this.weekOption[5].course[0].remark = "8点上课!!， 下午4点10分下课"
+    }
   },
   async created(){
     // 初始化课程内容
     this.weekOption = formatDate(tableData)
+    this.addRemark()
     // 初始化课程选项
     this.initSelectedValues() 
     this.initWeekDate()
@@ -683,6 +699,11 @@ export default {
             margin-right: 7px;
           }
         }
+      }
+    }
+    .remark {
+      .important{
+        color: #FF626E;
       }
     }
   }
